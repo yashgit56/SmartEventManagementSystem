@@ -1,6 +1,7 @@
 Smart Event Management System
 Overview
-The Smart Event Management System is a modern, efficient solution designed to streamline the organization and management of events. It offers features such as attendee management, check-ins, event analytics, and more, ensuring a seamless experience for event organizers and attendees alike.
+The Smart Event Management System is a modern, efficient solution designed to streamline the organization and management of events. 
+It offers features such as attendee management, check-ins, event analytics, and more, ensuring a seamless experience for event organizers and attendees alike.
 
 Features
 Event Creation: Organize events effortlessly with customizable details.
@@ -64,6 +65,6 @@ License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Contact
-Author: [Your Name]
-Email: your.email@example.com
-GitHub: Your GitHub Profile
+Author: Yash Vataliya
+Email: yashvataliya65@gmail.com
+GitHub: yashgit56
