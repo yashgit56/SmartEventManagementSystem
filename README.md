@@ -1,4 +1,4 @@
-mart Event Management System
+Smart Event Management System
 Overview
 The Smart Event Management System is a modern, efficient solution designed to streamline the organization and management of events. It offers features such as attendee management, check-ins, event analytics, and more, ensuring a seamless experience for event organizers and attendees alike.
 
