@@ -1,0 +1,187 @@
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\appsettings.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Smart Event Management System.staticwebassets.runtime.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Smart Event Management System.staticwebassets.endpoints.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Smart Event Management System.exe
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Smart Event Management System.deps.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Smart Event Management System.runtimeconfig.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Smart Event Management System.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Smart Event Management System.pdb
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.AssemblyInfoInputs.cache
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.AssemblyInfo.cs
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.csproj.CoreCompileInputs.cache
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.RazorAssemblyInfo.cache
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.RazorAssemblyInfo.cs
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\scopedcss\bundle\Smart Event Management System.styles.css
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\scopedcss\projectbundle\Smart Event Management System.bundle.scp.css
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\il2kwvgt20-b9sayid5wm.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\ru4xgwrery-61n19gt1b8.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\6sp1c0g12h-xtxxf3hu2r.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\uuqeorsg9n-t1cqhe9u97.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\0rbwd1eb4t-c2jlpeoesf.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\7wairn316b-sejl45xvog.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\ptyszm8jqp-aexeepp0ev.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\mzbibcxr80-xvp3kq03qx.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\0d5prk5ri1-ausgxo2sd3.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\wy07j0lkl5-22vffe00uq.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\8a01i7ahl5-cosvhxvwiu.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\k6ltzjnivu-qesaa3a1fm.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\dno6uygrvi-fvhpjtyr6v.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\6dmrrmjo0e-tmc1g35s3z.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\zfidz1giwb-fsbi9cje9m.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\p4x72b4ab9-rxsg74s51o.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\dz5nu4kxom-ee0r1s7dh0.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\41s3oe9pl4-q9ht133ko3.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\924vh087h6-jd9uben2k1.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\2q84fl5m1w-gye83jo8yx.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\tbdeeuardz-r4e9w2rdcm.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\tmdkiq7kwh-wl58j5mj3v.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\9249wog9m2-c2oey78nd0.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\gw2fhhkyx0-d4r6k3f320.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\cd7aflh9ez-j5mq2jizvt.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\tj825wahm3-keugtjm085.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\4o9apgwj0s-nvvlpmu67g.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\31aqw7ctis-zub09dkrxp.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\4jtappth31-pj5nd1wqec.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\cvbh4ftbpo-43atpzeawx.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\rvkxat33y4-v0zj4ognzu.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\9ehp7jbry1-ynyaa8k90p.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\9hoeide3i1-hrwsygsryq.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\fast60uele-c63t5i9ira.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\7u73elrw7j-ft3s53vfgj.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\w9mcw95t4q-4094rpi4f9.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\oqereb2cv8-6pdc2jztkx.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\yz9as1jc1h-hd3gran6i8.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\gfzeziwjo1-iovd86k7lj.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\2mqjo5w9e6-ltid2c489k.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\gcs4vzzgp8-kbrnm935zg.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\35lgeot9sd-8vyfqsqgz1.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\naglsx659h-y7v9cxd14o.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\xj1ng1zoxv-u9q1upor1n.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\gluvdt04dl-h1s4sie4z3.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\ry052ftsty-4d85u1mtcx.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\wbonxq9fui-0j3bgjxly4.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\bmr0sdmb6g-03hjc8e09r.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\f03bce3zs7-48y08845bh.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\yp4yqmlmfh-356vix0kms.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\4hpnj7h2me-83jwlth58m.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\xqoe8flhwp-mrlpezrjn3.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\0yv3bz7v96-worgj0nhwm.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\sxkr5ax13s-gk0pw8i4co.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\4r1zwo4h2m-x0q3zqp4vz.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\8bcikcth0y-d6nrnj6jjx.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\7t70lnzrwd-m9qm4tazc0.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\l8kiqfguob-ttgo8qnofa.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\3upfvh1bqy-jjsuc0puko.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\uwr3egf7al-9vr69e8ynj.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\jq0m9j0j2f-87fc7y1x7t.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\qrjacn9kjb-mlv21k5csn.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\9y1dl681qq-lf1yrr9186.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\compressed\fjlacmcqag-lf1yrr9186.gz
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets\msbuild.Smart Event Management System.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets\msbuild.Smart Event Management System.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets\msbuild.build.Smart Event Management System.props
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.Smart Event Management System.props
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.Smart Event Management System.props
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\staticwebassets.pack.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\refint\Smart Event Management System.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.pdb
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.genruntimeconfig.cache
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\ref\Smart Event Management System.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Humanizer.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Mono.TextTemplating.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\MySqlConnector.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\System.CodeDom.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\System.Composition.AttributedModel.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\System.Composition.Convention.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\System.Composition.Hosting.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\System.Composition.Runtime.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\System.Composition.TypedParts.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Event Management System.csproj.AssemblyReference.cache
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\Smart Event Management System\obj\Debug\net9.0\Smart Ev.973ACC77.Up2Date

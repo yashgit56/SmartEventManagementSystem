@@ -1,0 +1,27 @@
+﻿@page
+@model ErrorViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Unauthorized</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+
+<div class="max-w-md w-full p-6 bg-white shadow-md rounded-lg text-center">
+    <h1 class="text-2xl font-semibold text-red-600">Unauthorized Access</h1>
+    <p class="mt-4">@Model.ErrorMessage</p>
+    <p class="mt-2 text-sm text-gray-600">Status Code: @Model.StatusCode</p>
+    @if (!string.IsNullOrEmpty(Model.Details))
+    {
+        <p class="mt-2 text-sm text-gray-600">Details: @Model.Details</p>
+    }
+    <div class="mt-6">
+        <a href="@Url.Action("Index", "Home")" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">Go back to Home</a>
+    </div>
+</div>
+
+</body>
+</html>
