@@ -3,6 +3,8 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using RabbitMQ.Client ;
+using Smart_Event_Management_System.BackgroundService;
 using Smart_Event_Management_System.Context;
 using Smart_Event_Management_System.CustomLogic;
 using Smart_Event_Management_System.Models;
@@ -28,6 +30,22 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         }
     );
 
+builder.Services.AddSingleton<IConnection>(sp =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    var rabbitMqConfig = configuration.GetSection("RabbitMQ");
+
+    var factory = new ConnectionFactory
+    {
+        HostName = rabbitMqConfig["HostName"]!,
+        Port = int.Parse(rabbitMqConfig["Port"]!),
+        UserName = rabbitMqConfig["Username"]!,
+        Password = rabbitMqConfig["Password"]!
+    };
+
+    return factory.CreateConnectionAsync().Result;
+});
+
 // cors configuration 
 // builder.Services.AddCors(options => 
 //     options.AddPolicy("AllowAllOrigins",
@@ -48,6 +66,8 @@ builder.Services.AddScoped<ICheckInLogService, CheckInLogService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddSingleton<CustomLogicService>();
+builder.Services.AddSingleton<RabbitMQEmailService>();
+builder.Services.AddHostedService<RabbitMqEmailHostedService>();
 
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IAttendeeRepository, AttendeeRepository>();

@@ -1,4 +1,8 @@
-﻿using FluentValidation;
+﻿using System.Text;
+using System.Text.Json;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore.Metadata;
+using RabbitMQ.Client;
 using Smart_Event_Management_System.Context;
 using Smart_Event_Management_System.CustomException;
 using Smart_Event_Management_System.CustomLogic;
@@ -13,13 +17,20 @@ public class AttendeeService : IAttendeeService
     private readonly IAttendeeRepository _attendeeRepository;
     private readonly IValidator<Attendee> _attendeeValidator;
     private readonly CustomLogicService _customLogicService;
-
+    private readonly IChannel _channel;
+    
     public AttendeeService(ApplicationDbContext context, CustomLogicService customLogicService,
-        IValidator<Attendee> attendeeValidator, IAttendeeRepository attendeeRepository)
+        IValidator<Attendee> attendeeValidator, IAttendeeRepository attendeeRepository, IConnection rabbitmqConnection 
+            )
     {
         _attendeeRepository = attendeeRepository;
         _customLogicService = customLogicService;
         _attendeeValidator = attendeeValidator;
+        _channel = rabbitmqConnection.CreateChannelAsync().Result;
+
+        _channel.ExchangeDeclareAsync("attendee_email_exchange", ExchangeType.Direct);
+        _channel.QueueDeclareAsync(queue:"EmailQueue",durable:true,exclusive:false,autoDelete: false,arguments: null);
+        _channel.QueueBindAsync(queue:"EmailQueue",exchange:"attendee_email_exchange",routingKey: "SendEmail");
     }
 
     public async Task<IEnumerable<Attendee>> GetAllAttendeesAsync()
@@ -49,9 +60,26 @@ public class AttendeeService : IAttendeeService
         var hashPassword = _customLogicService.HashPassword(attendee.HashPassword);
         var tempAttendee = new Attendee(attendee.Username, attendee.Email, attendee.PhoneNumber, hashPassword);
 
-        attendee = await _attendeeRepository.CreateAttendeeAsync(tempAttendee);
+        try
+        {
+            var createdAttendee = await _attendeeRepository.CreateAttendeeAsync(tempAttendee);
+            
+            var message = JsonSerializer.Serialize(createdAttendee);
+            var body = Encoding.UTF8.GetBytes(message);
+            
+            await _channel.BasicPublishAsync(
+                exchange:"attendee_email_exchange", 
+                routingKey:"SendEmail", 
+                body:body
+                );
 
-        return attendee;
+            return createdAttendee;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error while creating attendee") ;
+            return null;
+        }
     }
 
     public async Task<bool> UpdateAttendeeAsync(int id, Attendee updatedAttendee)
