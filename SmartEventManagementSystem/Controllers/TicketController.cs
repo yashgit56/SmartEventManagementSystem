@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Service;
 
@@ -11,12 +12,13 @@ namespace Smart_Event_Management_System.Controllers;
 public class TicketController : ControllerBase
 {
     private readonly ITicketService _service;
-
+    
     public TicketController(ITicketService service)
     {
         _service = service;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Ticket>>> GetAllTickets()
     {
@@ -46,17 +48,23 @@ public class TicketController : ControllerBase
 
 
     [HttpPost]
-    public async Task<ActionResult<Ticket>> CreateTicket([FromBody] Ticket ticket)
+    public async Task<ActionResult<Ticket>> CreateTicket([FromBody] TicketDto ticketDto)
     {
-        if (ticket == null) return BadRequest("Ticket data is required");
+        try
+        {
+            var createdTicket = await _service.CreateTicketAsync(ticketDto);
 
-        var createdTicket = await _service.CreateTicketAsync(ticket);
-
-        return CreatedAtAction(
-            nameof(GetTicketById),
-            new { id = createdTicket.Id },
-            createdTicket
-        );
+            return CreatedAtAction(
+                nameof(GetTicketById),
+                new { id = createdTicket.Id },
+                createdTicket
+            );
+        }
+        catch (Exception e) when (e is ArgumentNullException || e is ArgumentException)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
 

@@ -9,13 +9,11 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-    public DbSet<Attendee> Attendees { get; set; }
+    public DbSet<Attendee?> Attendees { get; set; }
 
     public DbSet<Event> Events { get; set; }
 
     public DbSet<Ticket> Tickets { get; set; }
-
-    public DbSet<CheckInLog> CheckInLogs { get; set; }
 
     public DbSet<Admin> Admins { get; set; }
 }

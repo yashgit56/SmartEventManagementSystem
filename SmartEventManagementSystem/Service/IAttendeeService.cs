@@ -5,11 +5,11 @@ namespace Smart_Event_Management_System.Service;
 
 public interface IAttendeeService
 {
-    Task<IEnumerable<Attendee>> GetAllAttendeesAsync();
+    Task<IEnumerable<Attendee?>> GetAllAttendeesAsync();
 
     Task<Attendee> GetAttendeeByIdAsync(int id);
 
-    Task<Attendee> CreateAttendeeAsync(Attendee attendee);
+    Task<Attendee?> CreateAttendeeAsync(Attendee attendee);
 
     Task<bool> UpdateAttendeeAsync(int id, Attendee attendee);
 

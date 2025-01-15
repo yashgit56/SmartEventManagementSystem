@@ -397,3 +397,5 @@ C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementS
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\MailKit.dll
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\MimeKit.dll
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\RabbitMQ.Client.dll
+C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\DotNetEnv.dll
+C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\Sprache.dll

@@ -12,6 +12,13 @@ public class Admin
 
     public string? HashPassword { get; set; }
 
+    public Admin(string username, string email, string hashPassword)
+    {
+        Username = username;
+        Email = email;
+        HashPassword = hashPassword;
+    }
+
     public override string ToString()
     {
         return $"Admin: {Username} (ID: {Id}), Email: {Email}";

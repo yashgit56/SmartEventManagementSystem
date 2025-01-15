@@ -8,7 +8,7 @@ public interface ITicketRepository
     Task<IEnumerable<Ticket>> GetAllTicketsAsync();
     Task<IEnumerable<Ticket>> GetAllTicketsByAttendeeId(int id);
     Task<Ticket> GetTicketByIdAsync(int id);
-    Task<Ticket> CreateTicketAsync(Ticket ticket);
+    Task<Ticket> CreateTicketAsync(TicketDto ticketDto);
     Task<bool> UpdateTicketAsync(int id, Ticket updatedTicket);
     Task<bool> DeleteTicketAsync(int id);
     Task<List<TicketSalesDto>> GetTicketSalesForEventAsync(int eventId);

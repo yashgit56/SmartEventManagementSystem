@@ -33,7 +33,7 @@ public class AttendeeService : IAttendeeService
         _channel.QueueBindAsync(queue:"EmailQueue",exchange:"attendee_email_exchange",routingKey: "SendEmail");
     }
 
-    public async Task<IEnumerable<Attendee>> GetAllAttendeesAsync()
+    public async Task<IEnumerable<Attendee?>> GetAllAttendeesAsync()
     {
         var attendees = await _attendeeRepository.GetAllAttendeesAsync();
 
@@ -51,7 +51,7 @@ public class AttendeeService : IAttendeeService
         return attendee;
     }
 
-    public async Task<Attendee> CreateAttendeeAsync(Attendee attendee)
+    public async Task<Attendee?> CreateAttendeeAsync(Attendee attendee)
     {
         var validationResult = await _attendeeValidator.ValidateAsync(attendee);
 
@@ -60,10 +60,15 @@ public class AttendeeService : IAttendeeService
         var hashPassword = _customLogicService.HashPassword(attendee.HashPassword);
         var tempAttendee = new Attendee(attendee.Username, attendee.Email, attendee.PhoneNumber, hashPassword);
 
+        var createdAttendee = await _attendeeRepository.CreateAttendeeAsync(tempAttendee);
+
+        if (createdAttendee == null)
+        {
+            throw new UserAlreadyExistException("User with that username or email already exists.");
+        }
+        
         try
         {
-            var createdAttendee = await _attendeeRepository.CreateAttendeeAsync(tempAttendee);
-            
             var message = JsonSerializer.Serialize(createdAttendee);
             var body = Encoding.UTF8.GetBytes(message);
             

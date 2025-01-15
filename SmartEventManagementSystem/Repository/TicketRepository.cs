@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Smart_Event_Management_System.Context;
+using Smart_Event_Management_System.CustomException;
 using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 
@@ -29,14 +30,35 @@ public class TicketRepository : ITicketRepository
         return (await _context.Tickets.FindAsync(id))!;
     }
 
-    public async Task<Ticket> CreateTicketAsync(Ticket ticket)
+    public async Task<Ticket> CreateTicketAsync(TicketDto ticketDto)
     {
-        var eventItem = await _context.Events.FindAsync(ticket.EventId);
+        var eventItem = await _context.Events.FindAsync(ticketDto.EventId);
+        var attendee = await _context.Attendees.FindAsync(ticketDto.AttendeeId);
+        
         if (eventItem == null) throw new ArgumentException("Invalid Event ID");
+        if(attendee == null) throw new ArgumentException("Invalid Attendee ID");
 
         if (eventItem.Tickets.Count() >= eventItem.Capacity)
             throw new InvalidOperationException("Event reached its maximum capacity");
 
+        if (DateTime.Now > eventItem.Date)
+        {
+            throw new EventCompleteException($"Event is already completed on {eventItem.Date}");
+        }
+
+        var ticket = new Ticket()
+        {
+            EventId = ticketDto.EventId,
+            AttendeeId = ticketDto.AttendeeId,
+            Price = eventItem.BasePrice,
+            PurchaseDate = DateTime.Now,
+            IsCheckedIn = false,
+        };
+        // ticket.Event = eventItem;
+        // ticket.Attendee = attendee;
+
+        attendee.Tickets.Add(ticket);
+        eventItem.Tickets.Add(ticket);
         _context.Tickets.Add(ticket);
         await _context.SaveChangesAsync();
         return ticket;

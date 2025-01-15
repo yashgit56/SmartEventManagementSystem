@@ -11,8 +11,10 @@ using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Repository;
 using Smart_Event_Management_System.Service;
 using Smart_Event_Management_System.Validators;
-
+using DotNetEnv ;
 var builder = WebApplication.CreateBuilder(args);
+
+Env.Load();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -62,7 +64,6 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IAttendeeService, AttendeeService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
-builder.Services.AddScoped<ICheckInLogService, CheckInLogService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddSingleton<CustomLogicService>();
@@ -71,13 +72,11 @@ builder.Services.AddHostedService<RabbitMqEmailHostedService>();
 
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IAttendeeRepository, AttendeeRepository>();
-builder.Services.AddScoped<ICheckInLogRepository, CheckInLogRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
 builder.Services.AddScoped<IValidator<Admin>, AdminValidator>();
 builder.Services.AddScoped<IValidator<Attendee>, AttendeeValidator>();
-builder.Services.AddScoped<IValidator<CheckInLog>, CheckInLogValidator>();
 builder.Services.AddScoped<IValidator<Event>, EventValidator>();
 builder.Services.AddScoped<IValidator<Ticket>, TicketValidator>();
 

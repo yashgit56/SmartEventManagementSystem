@@ -8,20 +8,13 @@ namespace Smart_Event_Management_System.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AttendeeController : ControllerBase
+public class AttendeeController(IAttendeeService service) : ControllerBase
 {
-    private readonly IAttendeeService _service;
-
-    public AttendeeController(IAttendeeService service)
-    {
-        _service = service;
-    }
-
     [Authorize(Roles = "Admin")]
     [HttpGet("all")]
     public async Task<ActionResult<IEnumerable<Attendee>>> GetAllAttendees()
     {
-        var attendees = await _service.GetAllAttendeesAsync();
+        var attendees = await service.GetAllAttendeesAsync();
 
         if (!attendees.Any())
             return NotFound(new NotFoundException("No Attendees Found"));
@@ -35,7 +28,7 @@ public class AttendeeController : ControllerBase
     {
         try
         {
-            var attendee = await _service.GetAttendeeByIdAsync(id);
+            var attendee = await service.GetAttendeeByIdAsync(id);
             return Ok(attendee);
         }
         catch (Exception ex) when (ex is InvalidIDException or NotFoundException)
@@ -47,10 +40,18 @@ public class AttendeeController : ControllerBase
     [HttpPost("register")]
     public async Task<ActionResult<Attendee>> CreateAttendee([FromBody] Attendee attendee)
     {
-        if (!ModelState.IsValid) return BadRequest(new DataNotValidException("attendee data is not in proper format"));
+        try
+        {
+            if (!ModelState.IsValid) return BadRequest(new DataNotValidException("attendee data is not in proper format"));
 
-        var createdAttendee = await _service.CreateAttendeeAsync(attendee);
-        return CreatedAtAction(nameof(GetAttendee), new { id = createdAttendee.Id }, createdAttendee);
+            var createdAttendee = await service.CreateAttendeeAsync(attendee);
+        
+            return CreatedAtAction(nameof(GetAttendee), new { id = createdAttendee.Id }, createdAttendee);
+        }
+        catch (Exception e) when (e is UserAlreadyExistException)
+        {
+            return NotFound(new { e.Message });
+        }
     }
 
     [Authorize]
@@ -60,7 +61,7 @@ public class AttendeeController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new DataNotValidException("updated attendee data is not in proper format"));
 
-        var result = await _service.UpdateAttendeeAsync(id, updatedAttendee);
+        var result = await service.UpdateAttendeeAsync(id, updatedAttendee);
 
         if (!result) return NotFound();
 
@@ -73,7 +74,7 @@ public class AttendeeController : ControllerBase
     {
         try
         {
-            await _service.DeleteAttendeeAsync(id);
+            await service.DeleteAttendeeAsync(id);
             return NoContent();
         }
         catch (Exception ex) when (ex is InvalidIDException or NotFoundException)

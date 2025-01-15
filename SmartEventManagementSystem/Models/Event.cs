@@ -39,5 +39,5 @@ public class Event
 
     public EventStatus eventStatus { get; set; } = EventStatus.Upcoming;
 
-    public ICollection<Ticket> Tickets { get; private set; } = new List<Ticket>();
+    public ICollection<Ticket> Tickets { get; set; } 
 }

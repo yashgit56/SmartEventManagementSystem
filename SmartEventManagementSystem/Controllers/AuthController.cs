@@ -6,7 +6,7 @@ using Smart_Event_Management_System.Service;
 namespace Smart_Event_Management_System.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api")]
 public class AuthController : ControllerBase
 {
     private readonly IAdminService _adminService;
@@ -23,25 +23,16 @@ public class AuthController : ControllerBase
         _jwtService = jwtService;
     }
 
-    [HttpPost("login")]
-    public IActionResult LoginUser([FromBody] LoginRequest request)
+    [HttpPost("Admin/login")]
+    public IActionResult LoginAdmin([FromBody] LoginRequest request)
     {
         Admin adminUser = null!;
-        Attendee attendeeUser = null!;
+        
+        adminUser = _adminService.ValidateAdmin(request.Username!, request.Password!);
 
-        if (request.Role == "Attendee")
-            attendeeUser = _attendeeService.ValidateAttendee(request.Username!, request.Password!);
-        else if (request.Role == "Admin")
-            adminUser = _adminService.ValidateAdmin(request.Username!, request.Password!);
-
-        if (attendeeUser != null)
-            Console.WriteLine($"User validated successfully. Username: {attendeeUser?.Username}, Role:{request.Role}");
-        else
-            Console.WriteLine($"Validation failed for Username: {attendeeUser?.Username}, Role: {request.Role}");
-
-        if (attendeeUser != null)
+        if (adminUser != null)
         {
-            var token = _jwtService.GenerateToken(attendeeUser, request);
+            var token = _jwtService.GenerateToken(adminUser, request);
             Console.WriteLine(token);
             return Ok(new LoginResponse
             {
@@ -50,9 +41,20 @@ public class AuthController : ControllerBase
             });
         }
 
-        if (adminUser != null)
+        return Unauthorized(new { message = "Invalid username or password" });
+    }
+    
+    [HttpPost("Attendee/login")]
+    public IActionResult LoginUser([FromBody] LoginRequest request)
+    {
+        Attendee attendeeUser = null!;
+
+        if (request.Role == "Attendee")
+            attendeeUser = _attendeeService.ValidateAttendee(request.Username!, request.Password!);
+
+        if (attendeeUser != null)
         {
-            var token = _jwtService.GenerateToken(adminUser, request);
+            var token = _jwtService.GenerateToken(attendeeUser, request);
             Console.WriteLine(token);
             return Ok(new LoginResponse
             {

@@ -15,7 +15,7 @@ public class AttendeeRepository : IAttendeeRepository
     }
 
 
-    public async Task<IEnumerable<Attendee>> GetAllAttendeesAsync()
+    public async Task<IEnumerable<Attendee?>> GetAllAttendeesAsync()
     {
         return await _context.Attendees.ToListAsync();
     }
@@ -25,8 +25,16 @@ public class AttendeeRepository : IAttendeeRepository
         return (await _context.Attendees.FindAsync(id))!;
     }
 
-    public async Task<Attendee> CreateAttendeeAsync(Attendee attendee)
+    public async Task<Attendee?> CreateAttendeeAsync(Attendee attendee)
     {
+        var existingAttendee =
+            await _context.Attendees.FirstOrDefaultAsync(a => a!.Username == attendee.Username || a!.Email == attendee.Email);
+
+        if (existingAttendee != null)
+        {
+            return null;
+        }
+        
         _context.Attendees.Add(attendee);
         await _context.SaveChangesAsync();
         return attendee;

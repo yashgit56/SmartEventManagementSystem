@@ -11,7 +11,7 @@ public interface ITicketService
 
     Task<Ticket> GetTicketByIdAsync(int id);
 
-    Task<Ticket> CreateTicketAsync(Ticket ticket);
+    Task<Ticket> CreateTicketAsync(TicketDto ticketDto);
 
     Task<bool> UpdateTicketAsync(int id, Ticket ticket);
 

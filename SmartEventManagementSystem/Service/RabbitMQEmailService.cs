@@ -104,7 +104,7 @@ public class RabbitMQEmailService
             );
             await smtpClient.AuthenticateAsync(
                 emailSettingsSection["Username"],
-                emailSettingsSection["Password"]
+                Environment.GetEnvironmentVariable("EMAIL_PASSWORD") 
             );
             await smtpClient.SendAsync(email);
             await smtpClient.DisconnectAsync(true);

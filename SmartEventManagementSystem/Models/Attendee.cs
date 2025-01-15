@@ -22,7 +22,7 @@ public class Attendee
 
     public string PhoneNumber { get; set; }
 
-    public ICollection<Ticket> Tickets { get; } = new List<Ticket>();
+    public ICollection<Ticket> Tickets { get; set; } 
 
     public override string ToString()
     {

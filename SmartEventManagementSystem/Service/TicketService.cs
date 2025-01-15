@@ -10,9 +10,10 @@ public class TicketService : ITicketService
     private readonly ITicketRepository _ticketRepository;
     private readonly IValidator<Ticket> _ticketValidator;
 
-    public TicketService(IValidator<Ticket> ticketValidator, ITicketRepository _ticketRepository)
+    public TicketService(IValidator<Ticket> ticketValidator, ITicketRepository ticketRepository)
     {
         _ticketValidator = ticketValidator;
+        _ticketRepository = ticketRepository;
     }
 
     public async Task<IEnumerable<Ticket>> GetAllTicketsAsync()
@@ -30,13 +31,9 @@ public class TicketService : ITicketService
         return await _ticketRepository.GetTicketByIdAsync(id);
     }
 
-    public async Task<Ticket> CreateTicketAsync(Ticket ticket)
+    public async Task<Ticket> CreateTicketAsync(TicketDto ticketDto)
     {
-        var validationResult = await _ticketValidator.ValidateAsync(ticket);
-        if (!validationResult.IsValid)
-            throw new ValidationException(validationResult.Errors);
-
-        return await _ticketRepository.CreateTicketAsync(ticket);
+        return await _ticketRepository.CreateTicketAsync(ticketDto);
     }
 
     public async Task<bool> UpdateTicketAsync(int id, Ticket updatedTicket)

@@ -36,9 +36,10 @@ public class EventController : ControllerBase
         return Ok(eventItem);
     }
 
-    [HttpGet("{name}")]
+    [HttpGet("byName/{name}")]
     public async Task<ActionResult<Event>> GetAllEventsByName(string name)
     {
+        Console.WriteLine(name);
         var events = _service.GetEventByName(name);
 
         if (events == null) return NotFound();
@@ -46,9 +47,10 @@ public class EventController : ControllerBase
         return Ok(events);
     }
 
-    [HttpGet("{location}")]
+    [HttpGet("byLocation/{location}")]
     public async Task<ActionResult<Event>> GetAllEventsByLocation(string location)
     {
+        Console.WriteLine("location for event will be :", location); 
         var events = _service.GetEventByLocation(location);
 
         if (events == null) return NotFound();

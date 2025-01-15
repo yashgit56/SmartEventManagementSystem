@@ -23,8 +23,16 @@ public class AdminService : IAdminService
     {
         var hashPassword = _customLogicService.HashPassword(password);
 
-        var admin = _adminRepository.GetAdminByUsernameAndPassword(username, password);
+        var admin = _adminRepository.GetAdminByUsernameAndPassword(username, hashPassword);
 
         return admin;
+    }
+
+    public Admin CreateAdmin(Admin admin)
+    {
+        var hashPassword = _customLogicService.HashPassword(admin.HashPassword!);
+        var createdAdmin = new Admin(admin.Username!,admin.Email!,hashPassword) ;
+        var adminUser = _adminRepository.CreateAdmin(createdAdmin);
+        return adminUser; 
     }
 }
