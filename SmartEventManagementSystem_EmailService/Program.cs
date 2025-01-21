@@ -1,41 +1,71 @@
+using MassTransit;
+using SmartEventManagementSystem_EmailService;
+using SmartEventManagementSystem_EmailService.Models;
+using DotNetEnv;
+
 var builder = WebApplication.CreateBuilder(args);
 
+Env.Load();
+
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddMassTransit(x =>
+{
+    var rabbitMQConfig = builder.Configuration.GetSection("RabbitMQ");
+
+    x.AddConsumer<AttendeeEncodedConsumer>();
+
+    x.UsingRabbitMq((context, config) =>
+    {
+        var host = rabbitMQConfig.GetValue<string>("HostName");
+        var username = rabbitMQConfig.GetValue<string>("Username");
+        var password = rabbitMQConfig.GetValue<string>("Password");
+
+        config.Host(host, "/", h =>
+        {
+            h.Username(username!);
+            h.Password(password!);
+        });
+
+        config.ReceiveEndpoint("attendee_email_queue", e =>
+        {
+            e.Durable = true;
+            e.AutoDelete = false;
+            e.Exclusive = false;
+            e.ConfigureConsumeTopology = true;
+            e.Bind("attendee_email_exchange", x =>
+            {
+                x.RoutingKey = "attendee_email";
+                x.ExchangeType = "direct";
+            });
+            
+            e.ConfigureConsumer<AttendeeEncodedConsumer>(context);
+        });
+    });
+});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseAuthorization();
 
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
+app.MapStaticAssets();
+
+app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}")
+    .WithStaticAssets();
+
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

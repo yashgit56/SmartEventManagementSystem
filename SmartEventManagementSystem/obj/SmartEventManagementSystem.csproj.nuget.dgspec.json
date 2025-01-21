@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aryan Vataliya\\Desktop\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem.csproj": {}
+    "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\SmartEventManagementSystem\\SmartEventManagementSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aryan Vataliya\\Desktop\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem.csproj": {
+    "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\MessageContracts\\MessageContracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aryan Vataliya\\Desktop\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem.csproj",
-        "projectName": "SmartEventManagementSystem",
-        "projectPath": "C:\\Users\\Aryan Vataliya\\Desktop\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem.csproj",
-        "packagesPath": "C:\\Users\\Aryan Vataliya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aryan Vataliya\\Desktop\\SmartEventManagementSystem\\SmartEventManagementSystem\\SmartEventManagementSystem\\obj\\",
+        "projectUniqueName": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\MessageContracts\\MessageContracts.csproj",
+        "projectName": "MessageContracts",
+        "projectPath": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\MessageContracts\\MessageContracts.csproj",
+        "packagesPath": "C:\\Users\\Kwiza Kaneria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\MessageContracts\\obj\\",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
-          "C:\\Users\\Aryan Vataliya\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Kwiza Kaneria\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,17 +36,77 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\SmartEventManagementSystem\\SmartEventManagementSystem.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\SmartEventManagementSystem\\SmartEventManagementSystem.csproj",
+        "projectName": "SmartEventManagementSystem",
+        "projectPath": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\SmartEventManagementSystem\\SmartEventManagementSystem.csproj",
+        "packagesPath": "C:\\Users\\Kwiza Kaneria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\SmartEventManagementSystem\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Kwiza Kaneria\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\MessageContracts\\MessageContracts.csproj": {
+                "projectPath": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\MessageContracts\\MessageContracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "DotNetEnv": {
-              "target": "Package",
-              "version": "[3.1.1, )"
-            },
             "FluentValidation": {
               "target": "Package",
               "version": "[11.11.0, )"
@@ -62,9 +119,17 @@
               "target": "Package",
               "version": "[11.11.0, )"
             },
-            "MailKit": {
+            "MassTransit": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[8.3.5-develop.2176, )"
+            },
+            "MassTransit.AspNetCore": {
+              "target": "Package",
+              "version": "[7.3.1, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.3.5-develop.2176, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -122,7 +187,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\Aryan Vataliya\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

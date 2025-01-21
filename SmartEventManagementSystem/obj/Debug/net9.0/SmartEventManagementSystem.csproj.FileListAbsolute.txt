@@ -399,3 +399,16 @@ C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementS
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\RabbitMQ.Client.dll
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\DotNetEnv.dll
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\Sprache.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\FluentValidation.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\RabbitMQ.Client.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\SmartEventManagementSystem.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\SmartEventManagementSystem.sourcelink.json
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\MassTransit.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\MassTransit.Abstractions.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\MassTransit.AspNetCoreIntegration.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\MassTransit.ExtensionsDependencyInjectionIntegration.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\MassTransit.RabbitMqTransport.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\MessageContracts.dll
+C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\MessageContracts.pdb

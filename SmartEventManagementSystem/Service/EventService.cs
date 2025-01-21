@@ -25,14 +25,14 @@ public class EventService : IEventService
         return events;
     }
 
-    public async Task<IEnumerable<Event>> GetEventByName(string name)
+    public async Task<List<Event>> GetEventByName(string name)
     {
         var events = await _eventRepository.GetAllEventsByName(name);
 
         return events;
     }
 
-    public async Task<IEnumerable<Event>> GetEventByLocation(string location)
+    public async Task<List<Event>> GetEventByLocation(string location)
     {
         var events = await _eventRepository.GetAllEventsByLocation(location);
 

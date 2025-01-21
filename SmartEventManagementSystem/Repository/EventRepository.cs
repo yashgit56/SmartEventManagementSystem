@@ -26,13 +26,18 @@ public class EventRepository : IEventRepository
 
     public async Task<List<Event>> GetAllEventsByName(string name)
     {
-        return _context.Events.Where(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
+        return _context.Events
+            .Where(e => e.Name.ToLower() == name.ToLower())
+            .ToList();
     }
 
     public async Task<List<Event>> GetAllEventsByLocation(string location)
     {
-        return _context.Events.Where(e => e.Location.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
+        return _context.Events
+            .Where(e => e.Location.ToLower() == location.ToLower())
+            .ToList();
     }
+
 
     public async Task<Event> CreateEventAsync(Event eventItem)
     {

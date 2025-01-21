@@ -7,9 +7,9 @@ public interface IEventService
 {
     Task<IEnumerable<Event>> GetAllEventsAsync();
 
-    Task<IEnumerable<Event>> GetEventByName(string name);
+    Task<List<Event>> GetEventByName(string name);
 
-    Task<IEnumerable<Event>> GetEventByLocation(string location);
+    Task<List<Event>> GetEventByLocation(string location);
 
     Task<Event> GetEventByIdAsync(int id);
 

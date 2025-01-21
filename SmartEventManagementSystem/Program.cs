@@ -3,18 +3,16 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using RabbitMQ.Client ;
-using Smart_Event_Management_System.BackgroundService;
 using Smart_Event_Management_System.Context;
 using Smart_Event_Management_System.CustomLogic;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Repository;
 using Smart_Event_Management_System.Service;
 using Smart_Event_Management_System.Validators;
-using DotNetEnv ;
-var builder = WebApplication.CreateBuilder(args);
+using MassTransit;
+using Event = Smart_Event_Management_System.Models.Event;
 
-Env.Load();
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -32,22 +30,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         }
     );
 
-builder.Services.AddSingleton<IConnection>(sp =>
-{
-    var configuration = sp.GetRequiredService<IConfiguration>();
-    var rabbitMqConfig = configuration.GetSection("RabbitMQ");
-
-    var factory = new ConnectionFactory
-    {
-        HostName = rabbitMqConfig["HostName"]!,
-        Port = int.Parse(rabbitMqConfig["Port"]!),
-        UserName = rabbitMqConfig["Username"]!,
-        Password = rabbitMqConfig["Password"]!
-    };
-
-    return factory.CreateConnectionAsync().Result;
-});
-
 // cors configuration 
 // builder.Services.AddCors(options => 
 //     options.AddPolicy("AllowAllOrigins",
@@ -59,6 +41,30 @@ builder.Services.AddSingleton<IConnection>(sp =>
 //         })
 //     );
 
+builder.Services.AddMassTransit(x =>
+{
+    var rabbitMQConfig = builder.Configuration.GetSection("RabbitMQ");
+
+    x.UsingRabbitMq((context, config) =>
+    {
+        var host = rabbitMQConfig.GetValue<string>("HostName");
+        var port = rabbitMQConfig.GetValue<int>("Port");
+        var username = rabbitMQConfig.GetValue<string>("Username");
+        var password = rabbitMQConfig.GetValue<string>("Password");
+        
+        config.Host(host, "/", h =>
+        {
+            h.Username(username);
+            h.Password(password);
+        });
+        
+        config.Message<Attendee>(x =>
+        {
+            x.SetEntityName("attendee_email_exchange");
+        });
+    });
+});
+
 builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<IEventService, EventService>();
@@ -67,8 +73,6 @@ builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddSingleton<CustomLogicService>();
-builder.Services.AddSingleton<RabbitMQEmailService>();
-builder.Services.AddHostedService<RabbitMqEmailHostedService>();
 
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IAttendeeRepository, AttendeeRepository>();

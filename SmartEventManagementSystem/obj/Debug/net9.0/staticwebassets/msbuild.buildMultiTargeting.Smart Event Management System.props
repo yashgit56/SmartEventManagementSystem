@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Smart Event Management System.props" />
-</Project>
