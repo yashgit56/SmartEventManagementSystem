@@ -7,22 +7,26 @@ namespace Smart_Event_Management_System.Repository;
 
 public class AttendeeRepository : IAttendeeRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ApplicationDbContext _context = null!;
 
+    public AttendeeRepository()
+    {
+        
+    }
+    
     public AttendeeRepository(ApplicationDbContext context)
     {
         _context = context;
     }
-
-
+    
     public async Task<IEnumerable<Attendee?>> GetAllAttendeesAsync()
     {
         return await _context.Attendees.ToListAsync();
     }
 
-    public async Task<Attendee> GetAttendeeByIdAsync(int id)
+    public async Task<Attendee?> GetAttendeeByIdAsync(int id)
     {
-        return (await _context.Attendees.FindAsync(id))!;
+        return await _context.Attendees.FindAsync(id) ;
     }
 
     public async Task<Attendee?> CreateAttendeeAsync(Attendee attendee)
@@ -42,8 +46,10 @@ public class AttendeeRepository : IAttendeeRepository
 
     public async Task<bool> UpdateAttendeeAsync(int id, Attendee updatedAttendee)
     {
-        var attendee = await _context.Attendees.FindAsync(id);
-        if (attendee == null) return false;
+        var attendee = await GetAttendeeByIdAsync(id);
+        
+        if (attendee == null)
+            return false;
 
         attendee.Username = updatedAttendee.Username;
         attendee.Email = updatedAttendee.Email;
@@ -57,8 +63,9 @@ public class AttendeeRepository : IAttendeeRepository
 
     public async Task<bool> DeleteAttendeeAsync(int id)
     {
-        var attendee = await _context.Attendees.FindAsync(id);
-        if (attendee == null) return false;
+        var attendee = await GetAttendeeByIdAsync(id);
+        if (attendee == null)
+            return false;
 
         _context.Attendees.Remove(attendee);
         await _context.SaveChangesAsync();
@@ -68,7 +75,7 @@ public class AttendeeRepository : IAttendeeRepository
     public Attendee? GetAttendeeByUsernameAndPassword(string username, string password)
     {
         return _context.Attendees.FirstOrDefault(attendee =>
-            attendee.Username == username && attendee.HashPassword == password);
+            attendee!.Username == username && attendee.HashPassword == password);
     }
 
     public async Task<List<AttendeeWithTicketsDto>> GetAttendeesWithTicketPurchaseHistory()
@@ -87,4 +94,6 @@ public class AttendeeRepository : IAttendeeRepository
             })
             .ToListAsync();
     }
+    
+    
 }

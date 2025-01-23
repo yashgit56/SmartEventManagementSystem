@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using Smart_Event_Management_System.Models;
 
 namespace Smart_Event_Management_System.Validators;
@@ -24,5 +25,10 @@ public class EventValidator : AbstractValidator<Event>
 
         RuleFor(e => e.BasePrice)
             .GreaterThan(0).WithMessage("Base price must be greater than zero.");
+    }
+    
+    public Task<ValidationResult> ValidateAsync(Event eventInfo)
+    {
+        return base.ValidateAsync(eventInfo);
     }
 }

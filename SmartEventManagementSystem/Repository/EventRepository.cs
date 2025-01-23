@@ -19,9 +19,9 @@ public class EventRepository : IEventRepository
         return await _context.Events.OrderBy(e => e.Date).ToListAsync();
     }
 
-    public async Task<Event> GetEventByIdAsync(int id)
+    public async Task<Event?> GetEventByIdAsync(int id)
     {
-        return (await _context.Events.FindAsync(id))!;
+        return (await _context.Events.FindAsync(id));
     }
 
     public async Task<List<Event>> GetAllEventsByName(string name)

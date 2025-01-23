@@ -24,7 +24,7 @@ public class AttendeeController : ControllerBase
         var attendees = await _service.GetAllAttendeesAsync();
 
         if (!attendees.Any())
-            return NotFound(new NotFoundException("No Attendees Found"));
+            return NotFound(new {Message="No Attendees Found"});
 
         return Ok(attendees);
     }

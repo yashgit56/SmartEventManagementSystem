@@ -2,8 +2,9 @@
 
 public class InvalidIDException : Exception
 {
-    public InvalidIDException(string? message) : base(message)
+    public InvalidIDException(string message) : base(message)
     {
+        Message = message;
     }
 
     private string Message { get; }

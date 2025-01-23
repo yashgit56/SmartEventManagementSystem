@@ -19,7 +19,7 @@ public class AttendeeService : IAttendeeService
     private readonly CustomLogicService _customLogicService;
     private readonly IPublishEndpoint _publishEndpoint;
 
-    public AttendeeService(ApplicationDbContext context, CustomLogicService customLogicService,
+    public AttendeeService(CustomLogicService customLogicService,
         IValidator<Attendee> attendeeValidator, IAttendeeRepository attendeeRepository,
         IPublishEndpoint publishEndpoint
             )
@@ -34,6 +34,11 @@ public class AttendeeService : IAttendeeService
     {
         var attendees = await _attendeeRepository.GetAllAttendeesAsync();
 
+        if (attendees == null)
+        {
+            throw new NotFoundException("No Attendees Found");
+        }
+
         return attendees;
     }
 
@@ -43,7 +48,8 @@ public class AttendeeService : IAttendeeService
 
         var attendee = await _attendeeRepository.GetAttendeeByIdAsync(id);
 
-        if (attendee == null) throw new NotFoundException($"Attendee with id {id} not found.");
+        if (attendee == null) 
+            throw new NotFoundException($"Attendee with id {id} not found.");
 
         return attendee;
     }
@@ -95,7 +101,12 @@ public class AttendeeService : IAttendeeService
 
         if (!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
 
-        await _attendeeRepository.UpdateAttendeeAsync(id, updatedAttendee);
+        var result = await _attendeeRepository.UpdateAttendeeAsync(id, updatedAttendee);
+
+        if (!result)
+        {
+            throw new NotFoundException($"Attendee not found with that id {id}");
+        }
 
         return true;
     }
@@ -104,7 +115,12 @@ public class AttendeeService : IAttendeeService
     {
         if (id <= 0) throw new InvalidIDException("Invalid Id. Must be greater than zero");
 
-        await _attendeeRepository.DeleteAttendeeAsync(id);
+        var result = await _attendeeRepository.DeleteAttendeeAsync(id);
+
+        if (!result)
+        {
+            throw new NotFoundException($"Attendee not found with that id {id}");
+        }
 
         return true;
     }

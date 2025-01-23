@@ -6,7 +6,7 @@ namespace Smart_Event_Management_System.Repository;
 public interface IEventRepository
 {
     Task<IEnumerable<Event>> GetAllEventsAsync();
-    Task<Event> GetEventByIdAsync(int id);
+    Task<Event?> GetEventByIdAsync(int id);
 
     Task<List<Event>> GetAllEventsByName(string name);
 

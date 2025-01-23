@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using Smart_Event_Management_System.Models;
 
 namespace Smart_Event_Management_System.Validators;
@@ -18,5 +19,10 @@ public class AdminValidator : AbstractValidator<Admin>
 
         RuleFor(a => a.HashPassword)
             .NotEmpty().WithMessage("Password is required.");
+    }
+    
+    public Task<ValidationResult> ValidateAsync(Admin admin)
+    {
+        return base.ValidateAsync(admin);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using Smart_Event_Management_System.Models;
 
 namespace Smart_Event_Management_System.Validators;
@@ -18,5 +19,10 @@ public class TicketValidator : AbstractValidator<Ticket>
 
         RuleFor(t => t.AttendeeId)
             .Must(attendeeId => attendeeId.HasValue).WithMessage("AttendeeId cannot be null.");
+    }
+    
+    public Task<ValidationResult> ValidateAsync(Ticket ticket)
+    {
+        return base.ValidateAsync(ticket);
     }
 }

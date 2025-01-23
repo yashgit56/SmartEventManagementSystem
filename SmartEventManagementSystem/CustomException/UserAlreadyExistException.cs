@@ -4,6 +4,7 @@ public class UserAlreadyExistException : Exception
 {
     public UserAlreadyExistException(string message) : base(message)
     {
+        Message = message;
     }
 
     public string Message { get; set; }

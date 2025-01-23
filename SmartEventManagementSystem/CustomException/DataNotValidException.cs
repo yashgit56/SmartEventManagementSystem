@@ -4,6 +4,7 @@ public class DataNotValidException : Exception
 {
     public DataNotValidException(string message) : base(message)
     {
+        Message = message;
     }
 
     public string Message { get; }
