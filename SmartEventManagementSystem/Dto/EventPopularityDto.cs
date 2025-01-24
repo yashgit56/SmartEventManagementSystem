@@ -2,7 +2,7 @@
 
 public class EventPopularityDto
 {
-    public string EventName { get; set; }
+    public string EventName { get; set; }= null!;
 
     public int AttendeeCount { get; set; }
 }

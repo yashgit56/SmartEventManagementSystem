@@ -43,19 +43,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddMassTransit(x =>
 {
-    var rabbitMQConfig = builder.Configuration.GetSection("RabbitMQ");
+    var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ");
 
     x.UsingRabbitMq((context, config) =>
     {
-        var host = rabbitMQConfig.GetValue<string>("HostName");
-        var port = rabbitMQConfig.GetValue<int>("Port");
-        var username = rabbitMQConfig.GetValue<string>("Username");
-        var password = rabbitMQConfig.GetValue<string>("Password");
+        var host = rabbitMqConfig.GetValue<string>("HostName");
+        var port = rabbitMqConfig.GetValue<int>("Port");
+        var username = rabbitMqConfig.GetValue<string>("Username");
+        var password = rabbitMqConfig.GetValue<string>("Password");
         
         config.Host(host, "/", h =>
         {
-            h.Username(username);
-            h.Password(password);
+            h.Username(username!);
+            h.Password(password!);
         });
         
         config.Message<Attendee>(x =>

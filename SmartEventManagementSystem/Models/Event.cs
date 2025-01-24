@@ -31,17 +31,17 @@ public class Event
 
     [Key] public int Id { get; set; }
 
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
     public DateTime Date { get; set; }
 
-    public string Location { get; set; }
+    public string Location { get; set; } = null!;
 
-    public int Capacity { get; set; }
+    public int Capacity { get; set; } 
 
     public decimal BasePrice { get; set; }
 
-    public EventStatus eventStatus { get; set; } = EventStatus.Upcoming;
+    public EventStatus EventStatus { get; set; } = EventStatus.Upcoming;
 
     public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

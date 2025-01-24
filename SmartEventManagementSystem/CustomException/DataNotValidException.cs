@@ -7,5 +7,5 @@ public class DataNotValidException : Exception
         Message = message;
     }
 
-    public string Message { get; }
+    public override string Message { get; }
 }

@@ -89,12 +89,12 @@ public class EventRepository : IEventRepository
                 {
                     Price = t.Price,
                     IsCheckedIn = t.IsCheckedIn,
-                    ticketStatus = t.ticketStatus
+                    ticketStatus = t.TicketStatus
                 }).ToList(),
                 Attendees = e.Tickets.Select(t => new AttendeeDetailsDto
                 {
-                    Username = t.Attendee.Username,
-                    Email = t.Attendee.Email
+                    Username = t.Attendee!.Username,
+                    Email = t.Attendee!.Email
                 }).ToList()
             })
             .ToListAsync();
@@ -116,7 +116,7 @@ public class EventRepository : IEventRepository
                 Location = e.Event.Location,
                 Capacity = e.Event.Capacity,
                 TicketStatusSummary = e.Ticket
-                    .GroupBy(t => t.ticketStatus)
+                    .GroupBy(t => t.TicketStatus)
                     .Select(g => new TicketStatusSummaryDto
                     {
                         Status = g.Key,

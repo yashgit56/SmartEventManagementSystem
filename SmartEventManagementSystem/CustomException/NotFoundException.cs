@@ -7,5 +7,5 @@ public class NotFoundException : Exception
         Message = message;
     }
 
-    public string Message { get; set; }
+    public override string Message { get; }
 }

@@ -1,10 +1,6 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\SmartEventManagementSystem\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SmartEventManagementSystem.bundle.scp.css",
-      "PackagePath": "staticwebassets\\SmartEventManagementSystem.oouzn4gvq8.bundle.scp.css"
-    },
-    {
       "Id": "C:\\Users\\Kwiza Kaneria\\RiderProjects\\Smart Event Management System\\SmartEventManagementSystem\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

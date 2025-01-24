@@ -7,5 +7,5 @@ public class InvalidIDException : Exception
         Message = message;
     }
 
-    private string Message { get; }
+    public override string Message { get; }
 }

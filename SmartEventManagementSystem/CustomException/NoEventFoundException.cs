@@ -2,7 +2,7 @@
 
 public class NoEventFoundException : Exception
 {
-    public override string Message { get; } = null!;
+    public override string Message { get; } 
     
     public NoEventFoundException(string message) : base(message)
     {

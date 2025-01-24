@@ -101,11 +101,7 @@ C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventMan
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\SmartEventManagementSystem.AssemblyInfo.cs
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\SmartEventManagementSystem.csproj.CoreCompileInputs.cache
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\SmartEventManagementSystem.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\SmartEventManagementSystem.RazorAssemblyInfo.cache
-C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\SmartEventManagementSystem.RazorAssemblyInfo.cs
-C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\scopedcss\bundle\SmartEventManagementSystem.styles.css
-C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\scopedcss\projectbundle\SmartEventManagementSystem.bundle.scp.css
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\compressed\dqm0nexyip-b9sayid5wm.gz
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\compressed\e7ii4miz7j-61n19gt1b8.gz
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\compressed\rzahrasshc-xtxxf3hu2r.gz
@@ -191,8 +187,6 @@ C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventMan
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\compressed\id4rmntrai-oouzn4gvq8.gz
-C:\Users\Kwiza Kaneria\RiderProjects\Smart Event Management System\SmartEventManagementSystem\obj\Debug\net9.0\compressed\70gdyn0kkg-oouzn4gvq8.gz
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\appsettings.json
 C:\Users\Aryan Vataliya\Desktop\SmartEventManagementSystem\SmartEventManagementSystem\SmartEventManagementSystem\bin\Debug\net9.0\SmartEventManagementSystem.staticwebassets.runtime.json

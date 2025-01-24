@@ -26,43 +26,38 @@ public class AuthController : ControllerBase
     [HttpPost("Admin/login")]
     public IActionResult LoginAdmin([FromBody] LoginRequest request)
     {
-        Admin adminUser = null!;
+        Admin? adminUser;
         
         adminUser = _adminService.GetAdminByUsernameAndPassword(request.Username!, request.Password!);
 
-        if (adminUser != null)
+        if (adminUser == null) return Unauthorized(new { message = "Invalid username or password" });
+        
+        var token = _jwtService.GenerateToken(adminUser, request);
+        Console.WriteLine(token);
+        return Ok(new LoginResponse
         {
-            var token = _jwtService.GenerateToken(adminUser, request);
-            Console.WriteLine(token);
-            return Ok(new LoginResponse
-            {
-                Token = token,
-                Role = request.Role
-            });
-        }
+            Token = token,
+            Role = request.Role
+        });
 
-        return Unauthorized(new { message = "Invalid username or password" });
     }
     
     [HttpPost("Attendee/login")]
     public IActionResult LoginUser([FromBody] LoginRequest request)
     {
-        Attendee attendeeUser = null!;
+        Attendee? attendeeUser;
+        
+        attendeeUser = _attendeeService.ValidateAttendee(request.Username!, request.Password!);
 
-        if (request.Role == "Attendee")
-            attendeeUser = _attendeeService.ValidateAttendee(request.Username!, request.Password!);
-
-        if (attendeeUser != null)
+        if (attendeeUser == null) return Unauthorized(new { message = "Invalid username or password" });
+        
+        var token = _jwtService.GenerateToken(attendeeUser, request);
+        Console.WriteLine(token);
+        return Ok(new LoginResponse
         {
-            var token = _jwtService.GenerateToken(attendeeUser, request);
-            Console.WriteLine(token);
-            return Ok(new LoginResponse
-            {
-                Token = token,
-                Role = request.Role
-            });
-        }
+            Token = token,
+            Role = request.Role
+        });
 
-        return Unauthorized(new { message = "Invalid username or password" });
     }
 }

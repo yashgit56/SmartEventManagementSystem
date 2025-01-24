@@ -7,5 +7,5 @@ public class EventCompleteException : Exception
         Message = message;
     }
 
-    private string Message { get; }
+    public override string Message { get; }
 }

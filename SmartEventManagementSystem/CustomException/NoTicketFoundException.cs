@@ -2,7 +2,7 @@
 
 public class NoTicketFoundException : Exception
 {
-    public string Message { get; set; }
+    public override string Message { get; }
 
     public NoTicketFoundException(string message) : base(message)
     {

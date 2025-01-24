@@ -2,7 +2,7 @@
 
 public class EventSalesDto
 {
-    public string EventName { get; set; }
+    public string EventName { get; set; }= null!;
     
     public int TicketsSold { get; set; }
     

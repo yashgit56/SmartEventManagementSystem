@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Smart_Event_Management_System.CustomException;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Service;
+using Smart_Event_Management_System.Validators;
 
 namespace Smart_Event_Management_System.Controllers;
 
@@ -10,18 +12,56 @@ namespace Smart_Event_Management_System.Controllers;
 public class AdminController : ControllerBase
 {
     private readonly IAdminService _adminService;
+    private readonly AdminValidator _adminValidator;
     
-    public AdminController(IAdminService adminService)
+    public AdminController(IAdminService adminService, AdminValidator adminValidator)
     {
         _adminService = adminService;
+        _adminValidator = adminValidator;
     }
 
     [HttpPost("register")]
-    public IActionResult CreateAdmin([FromBody] Admin admin)
+    public async Task<IActionResult> CreateAdmin([FromBody] Admin admin)
     {
-        if (!ModelState.IsValid) return BadRequest(new DataNotValidException("admin data is not in proper format"));
+        try
+        {
+            var validationResult = await _adminValidator.ValidateAsync(admin);
 
-        var createdAdmin = _adminService.CreateAdmin(admin);
-        return Ok(createdAdmin);
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors.ToString());
+            }
+
+            var createdAdmin = _adminService.CreateAdmin(admin);
+            return Ok(createdAdmin);
+        }
+        catch (ValidationException ex)
+        {
+            return BadRequest(new
+            {
+                Messsage = ex.Message
+            });
+        }
+    }
+
+    [HttpGet]
+    public ActionResult<Admin>? GetAdminByUsernameAndPassword(string username, string password)
+    {
+        try
+        {
+            var admin = _adminService.GetAdminByUsernameAndPassword(username, password);
+
+            if (admin == null)
+            {
+                throw new NotFoundException($"no admin found with username {username}");
+            }
+        
+            return Ok(admin);
+        }
+        catch (NotFoundException e)
+        {
+            Console.WriteLine(e.Message);
+            return null;
+        }
     }
 }

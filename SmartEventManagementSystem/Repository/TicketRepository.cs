@@ -103,7 +103,7 @@ public class TicketRepository : ITicketRepository
                 TicketId = t.Id,
                 Price = t.Price,
                 PurchaseDate = t.PurchaseDate,
-                Username = t.Attendee.Username,
+                Username = t.Attendee!.Username,
                 Email = t.Attendee.Email
             })
             .ToListAsync();

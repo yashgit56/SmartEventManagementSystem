@@ -19,7 +19,7 @@ public class Ticket
     public int EventId { get; set; }
 
     [JsonIgnore]
-    [ForeignKey(nameof(EventId))] public Event Event { get; }
+    [ForeignKey(nameof(EventId))] public Event? Event { get; }
 
     public int? AttendeeId { get; set; }
 
@@ -32,7 +32,7 @@ public class Ticket
 
     public bool IsCheckedIn { get; set; } = false;
 
-    public TicketStatus ticketStatus { get; set; } = TicketStatus.Available;
+    public TicketStatus TicketStatus { get; set; } = TicketStatus.Available;
 
     public Ticket()
     {

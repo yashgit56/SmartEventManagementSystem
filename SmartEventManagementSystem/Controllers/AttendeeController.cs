@@ -49,8 +49,6 @@ public class AttendeeController : ControllerBase
     {
         try
         {
-            if (!ModelState.IsValid) return BadRequest(new DataNotValidException("attendee data is not in proper format"));
-
             var createdAttendee = await _service.CreateAttendeeAsync(attendee);
             
             Console.WriteLine(createdAttendee?.ToString());
@@ -67,9 +65,6 @@ public class AttendeeController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateAttendee(int id, [FromBody] Attendee updatedAttendee)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(new DataNotValidException("updated attendee data is not in proper format"));
-
         var result = await _service.UpdateAttendeeAsync(id, updatedAttendee);
 
         if (!result) return NotFound();

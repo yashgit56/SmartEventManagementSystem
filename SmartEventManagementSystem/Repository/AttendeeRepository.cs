@@ -83,13 +83,13 @@ public class AttendeeRepository : IAttendeeRepository
         return await _context.Attendees
             .Select(a => new AttendeeWithTicketsDto
             {
-                Username = a.Username,
+                Username = a!.Username,
                 Email = a.Email,
                 Tickets = a.Tickets.Select(t => new TicketDetailsDto
                 {
                     IsCheckedIn = t.IsCheckedIn,
                     Price = t.Price,
-                    ticketStatus = t.ticketStatus
+                    ticketStatus = t.TicketStatus
                 }).ToList()
             })
             .ToListAsync();
