@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Smart_Event_Management_System.CustomException;
+using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Service;
 using Smart_Event_Management_System.Validators;
+using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 
 namespace Smart_Event_Management_System.Controllers;
 
@@ -12,9 +15,9 @@ namespace Smart_Event_Management_System.Controllers;
 public class AdminController : ControllerBase
 {
     private readonly IAdminService _adminService;
-    private readonly AdminValidator _adminValidator;
+    private readonly IValidator<Admin> _adminValidator;
     
-    public AdminController(IAdminService adminService, AdminValidator adminValidator)
+    public AdminController(IAdminService adminService, IValidator<Admin> adminValidator)
     {
         _adminService = adminService;
         _adminValidator = adminValidator;
@@ -23,25 +26,25 @@ public class AdminController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> CreateAdmin([FromBody] Admin admin)
     {
-        try
-        {
-            var validationResult = await _adminValidator.ValidateAsync(admin);
+        
+        var validationResult = await _adminValidator.ValidateAsync(admin);
 
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors.ToString());
-            }
+        if (!validationResult.IsValid) {
+            var errors = validationResult.Errors
+                .Select(error => new ValidationFailure(error.PropertyName, error.ErrorMessage))
+                .ToList();
 
-            var createdAdmin = _adminService.CreateAdmin(admin);
-            return Ok(createdAdmin);
-        }
-        catch (ValidationException ex)
-        {
-            return BadRequest(new
+            var validationErrorResponse = new ValidationErrorResponse()
             {
-                Messsage = ex.Message
-            });
+                Message = "Validation errors occurred.",
+                Errors = errors
+            };
+
+            return BadRequest(validationErrorResponse);
         }
+
+        var createdAdmin = _adminService.CreateAdmin(admin);
+        return Ok(createdAdmin);
     }
 
     [HttpGet]
@@ -55,13 +58,25 @@ public class AdminController : ControllerBase
             {
                 throw new NotFoundException($"no admin found with username {username}");
             }
-        
+
             return Ok(admin);
         }
         catch (NotFoundException e)
         {
-            Console.WriteLine(e.Message);
-            return null;
+            return NotFound(new ErrorResponse()
+            {
+                Message = e.Message
+            });
+        }
+        catch (Exception ex)
+        {
+            return new ObjectResult(new ErrorResponse()
+            {
+                Message = "An unexpected error occurred."
+            })
+            {
+                StatusCode = 500
+            };
         }
     }
 }

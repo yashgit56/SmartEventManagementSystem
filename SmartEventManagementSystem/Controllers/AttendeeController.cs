@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Smart_Event_Management_System.CustomException;
+using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Service;
 
@@ -21,12 +22,19 @@ public class AttendeeController : ControllerBase
     [HttpGet("all")]
     public async Task<ActionResult<IEnumerable<Attendee>>> GetAllAttendees()
     {
-        var attendees = await _service.GetAllAttendeesAsync();
+        try
+        {
+            var attendees = await _service.GetAllAttendeesAsync();
 
-        if (!attendees.Any())
-            return NotFound(new {Message="No Attendees Found"});
-
-        return Ok(attendees);
+            return Ok(attendees);
+        }
+        catch (NotFoundException e)
+        {
+            return NotFound(new ErrorResponse()
+            {
+                Message = e.Message
+            });
+        }
     }
 
     [Authorize]
@@ -38,9 +46,19 @@ public class AttendeeController : ControllerBase
             var attendee = await _service.GetAttendeeByIdAsync(id);
             return Ok(attendee);
         }
-        catch (Exception ex) when (ex is InvalidIDException or NotFoundException)
+        catch (InvalidIDException ex)
         {
-            return NotFound(new { ex.Message });
+            return NotFound(new ErrorResponse()
+            {
+                Message = ex.Message
+            });
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new ErrorResponse()
+            {
+                Message = ex.Message
+            });
         }
     }
 
@@ -55,9 +73,12 @@ public class AttendeeController : ControllerBase
         
             return CreatedAtAction(nameof(GetAttendee), new { id = createdAttendee?.Id }, createdAttendee);
         }
-        catch (Exception e) when (e is UserAlreadyExistException)
+        catch (UserAlreadyExistException e)
         {
-            return NotFound(new { e.Message });
+            return NotFound(new ErrorResponse()
+            {
+                Message = e.Message 
+            });
         }
     }
 
@@ -83,7 +104,10 @@ public class AttendeeController : ControllerBase
         }
         catch (Exception ex) when (ex is InvalidIDException or NotFoundException)
         {
-            return NotFound(new { ex.Message });
+            return NotFound(new ErrorResponse()
+            {
+                Message = ex.Message
+            });
         }
     }
 }

@@ -32,7 +32,7 @@ public class AttendeeService : IAttendeeService
     {
         var attendees = await _attendeeRepository.GetAllAttendeesAsync();
 
-        if (attendees == null)
+        if (attendees == null || !attendees.Any())
         {
             throw new NotFoundException("No Attendees Found");
         }
