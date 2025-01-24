@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Smart_Event_Management_System.Context;
+using Smart_Event_Management_System.CustomException;
 using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Repository;
@@ -9,12 +10,9 @@ namespace Smart_Event_Management_System.Service;
 public class EventService : IEventService
 {
     private readonly IEventRepository _eventRepository;
-    private readonly IValidator<Event> _eventValidator;
 
-    public EventService(ApplicationDbContext context, IValidator<Event> eventValidator,
-        IEventRepository eventRepository)
+    public EventService(IEventRepository eventRepository)
     {
-        _eventValidator = eventValidator;
         _eventRepository = eventRepository;
     }
 
@@ -22,12 +20,22 @@ public class EventService : IEventService
     {
         var events = await _eventRepository.GetAllEventsAsync();
 
+        if (events == null || !events.Any()) // Check if events are null or empty
+        {
+            throw new NoEventFoundException("No events found");
+        }
+
         return events;
     }
 
     public async Task<List<Event>> GetEventByName(string name)
     {
         var events = await _eventRepository.GetAllEventsByName(name);
+        
+        if (events == null || !events.Any())
+        {
+            throw new NoEventFoundException("no events found by that name");
+        }
 
         return events;
     }
@@ -35,38 +43,54 @@ public class EventService : IEventService
     public async Task<List<Event>> GetEventByLocation(string location)
     {
         var events = await _eventRepository.GetAllEventsByLocation(location);
+        
+        if (events == null || !events.Any())
+        {
+            throw new NoEventFoundException("no events found at that location");
+        }
 
         return events;
     }
 
     public async Task<Event> GetEventByIdAsync(int id)
     {
-        return await _eventRepository.GetEventByIdAsync(id);
+        var eventInfo = await _eventRepository.GetEventByIdAsync(id);
+
+        if (eventInfo == null)
+        {
+            throw new NoEventFoundException("no event exist with that id");
+        }
+
+        return eventInfo;
     }
 
     public async Task<Event> CreateEventAsync(Event eventItem)
     {
-        var validationResult = await _eventValidator.ValidateAsync(eventItem);
-
-        if (!validationResult.IsValid)
-            throw new ValidationException(validationResult.Errors);
-
         return await _eventRepository.CreateEventAsync(eventItem);
     }
 
     public async Task<bool> UpdateEventAsync(int id, Event updatedEvent)
     {
-        var validationResult = await _eventValidator.ValidateAsync(updatedEvent);
+        var result = await _eventRepository.UpdateEventAsync(id, updatedEvent);
 
-        if (!validationResult.IsValid)
-            throw new ValidationException(validationResult.Errors);
+        if (!result)
+        {
+            throw new NoEventFoundException("failed to update. no event found with that id");
+        }
 
-        return await _eventRepository.UpdateEventAsync(id, updatedEvent);
+        return true;
     }
 
     public async Task<bool> DeleteEventAsync(int id)
     {
-        return await _eventRepository.DeleteEventAsync(id);
+        var result = await _eventRepository.DeleteEventAsync(id);
+
+        if (!result)
+        {
+            throw new NoEventFoundException("failed to delete. no event found with that id");
+        }
+
+        return true;
     }
 
     public async Task<List<EventDetailsDto>> GetUpcomingEventsWithAttendeesAndTicketsAsync()

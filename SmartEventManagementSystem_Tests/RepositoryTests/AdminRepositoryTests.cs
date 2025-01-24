@@ -71,8 +71,11 @@ public class AdminRepositoryTests
     }
 
     [Fact]
-    public void CreateAdmin_CreatesAdminSuccessfully()
+    public async Task CreateAdmin_CreatesAdminSuccessfully()
     {
+        _appDbContext.Admins.RemoveRange(_appDbContext.Admins);
+        await _appDbContext.SaveChangesAsync();
+        
         var admin = new Admin("newAdmin", "admin@example.com", "hashedPassword123");
         
         var result = _adminRepository.CreateAdmin(admin);
@@ -81,9 +84,10 @@ public class AdminRepositoryTests
         Assert.Equal("newAdmin", result.Username);
         Assert.Equal("admin@example.com", result.Email);
         Assert.Equal("hashedPassword123", result.HashPassword);
-
+        
         var savedAdmin = _appDbContext.Admins.FirstOrDefault(a => a.Username == "newAdmin");
         Assert.NotNull(savedAdmin);
         Assert.Equal("admin@example.com", savedAdmin.Email);
     }
+
 }

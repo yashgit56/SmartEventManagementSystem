@@ -28,7 +28,7 @@ public class AuthController : ControllerBase
     {
         Admin adminUser = null!;
         
-        adminUser = _adminService.ValidateAdmin(request.Username!, request.Password!);
+        adminUser = _adminService.GetAdminByUsernameAndPassword(request.Username!, request.Password!);
 
         if (adminUser != null)
         {

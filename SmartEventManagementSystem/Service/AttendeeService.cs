@@ -15,7 +15,6 @@ namespace Smart_Event_Management_System.Service;
 public class AttendeeService : IAttendeeService
 {
     private readonly IAttendeeRepository _attendeeRepository;
-    private readonly IValidator<Attendee> _attendeeValidator;
     private readonly CustomLogicService _customLogicService;
     private readonly IPublishEndpoint _publishEndpoint;
 
@@ -26,7 +25,6 @@ public class AttendeeService : IAttendeeService
     {
         _attendeeRepository = attendeeRepository;
         _customLogicService = customLogicService;
-        _attendeeValidator = attendeeValidator;
         _publishEndpoint = publishEndpoint;
     }
 
@@ -56,10 +54,6 @@ public class AttendeeService : IAttendeeService
 
     public async Task<Attendee?> CreateAttendeeAsync(Attendee attendee)
     {
-        var validationResult = await _attendeeValidator.ValidateAsync(attendee);
-
-        if (!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
-
         var password = attendee.HashPassword;
         var hashPassword = _customLogicService.HashPassword(attendee.HashPassword);
         var tempAttendee = new Attendee(attendee.Username, attendee.Email, attendee.PhoneNumber, hashPassword);
@@ -97,10 +91,6 @@ public class AttendeeService : IAttendeeService
 
     public async Task<bool> UpdateAttendeeAsync(int id, Attendee updatedAttendee)
     {
-        var validationResult = await _attendeeValidator.ValidateAsync(updatedAttendee);
-
-        if (!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
-
         var result = await _attendeeRepository.UpdateAttendeeAsync(id, updatedAttendee);
 
         if (!result)

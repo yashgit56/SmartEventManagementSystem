@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Smart_Event_Management_System.CustomException;
 using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Repository;
@@ -8,27 +9,46 @@ namespace Smart_Event_Management_System.Service;
 public class TicketService : ITicketService
 {
     private readonly ITicketRepository _ticketRepository;
-    private readonly IValidator<Ticket> _ticketValidator;
 
-    public TicketService(IValidator<Ticket> ticketValidator, ITicketRepository ticketRepository)
+    public TicketService(ITicketRepository ticketRepository)
     {
-        _ticketValidator = ticketValidator;
         _ticketRepository = ticketRepository;
     }
 
     public async Task<IEnumerable<Ticket>> GetAllTicketsAsync()
     {
-        return await _ticketRepository.GetAllTicketsAsync();
+        var tickets = await _ticketRepository.GetAllTicketsAsync();
+
+        if (tickets == null || !tickets.Any())
+        {
+            throw new NoTicketFoundException("No Tickets found");
+        }
+
+        return tickets;
     }
 
     public async Task<IEnumerable<Ticket>> GetAllTicketsByAttendeeId(int id)
     {
-        return await _ticketRepository.GetAllTicketsByAttendeeId(id);
+        var tickets = await _ticketRepository.GetAllTicketsByAttendeeId(id);
+        
+        if (tickets == null || !tickets.Any())
+        {
+            throw new NoTicketFoundException("No Tickets found for that attendee");
+        }
+
+        return tickets;
     }
 
     public async Task<Ticket> GetTicketByIdAsync(int id)
     {
-        return await _ticketRepository.GetTicketByIdAsync(id);
+        var tickets = await _ticketRepository.GetTicketByIdAsync(id);
+        
+        if (tickets == null)
+        {
+            throw new NoTicketFoundException("No Ticket found");
+        }
+
+        return tickets;
     }
 
     public async Task<Ticket> CreateTicketAsync(TicketDto ticketDto)

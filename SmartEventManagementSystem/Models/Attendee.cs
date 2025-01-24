@@ -12,6 +12,11 @@ public class Attendee
         HashPassword = hashPassword;
     }
 
+    public Attendee()
+    {
+        
+    }
+
     [Key] public int Id { get; set; }
 
     public string Username { get; set; }

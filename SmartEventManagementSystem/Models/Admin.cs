@@ -12,6 +12,11 @@ public class Admin
 
     public string? HashPassword { get; set; }
 
+    public Admin()
+    {
+        
+    }
+    
     public Admin(string username, string email, string hashPassword)
     {
         Username = username;

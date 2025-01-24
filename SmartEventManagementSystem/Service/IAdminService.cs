@@ -4,7 +4,7 @@ namespace Smart_Event_Management_System.Service;
 
 public interface IAdminService
 {
-    Admin ValidateAdmin(string username, string password);
+    Admin? GetAdminByUsernameAndPassword(string username, string password);
     
-    Admin CreateAdmin(Admin admin);
+    Admin? CreateAdmin(Admin admin);
 }

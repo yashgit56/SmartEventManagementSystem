@@ -26,16 +26,16 @@ public class EventRepository : IEventRepository
 
     public async Task<List<Event>> GetAllEventsByName(string name)
     {
-        return _context.Events
+        return await _context.Events
             .Where(e => e.Name.ToLower() == name.ToLower())
-            .ToList();
+            .ToListAsync();
     }
 
     public async Task<List<Event>> GetAllEventsByLocation(string location)
     {
-        return _context.Events
+        return await _context.Events
             .Where(e => e.Location.ToLower() == location.ToLower())
-            .ToList();
+            .ToListAsync();
     }
 
 
