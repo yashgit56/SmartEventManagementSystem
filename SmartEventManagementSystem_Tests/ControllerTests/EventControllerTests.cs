@@ -1,4 +1,10 @@
-﻿namespace SmartEventManagementSystem_Tests.ControllerTests;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FluentValidation;
+
+namespace SmartEventManagementSystem_Tests.ControllerTests;
 
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -10,12 +16,14 @@ using Xunit;
 public class EventControllerTests
 {
     private readonly Mock<IEventService> _mockEventService;
+    private readonly Mock<IValidator<Event>> _mockEventValidator;
     private readonly EventController _eventController;
 
     public EventControllerTests()
     {
         _mockEventService = new Mock<IEventService>();
-        _eventController = new EventController(_mockEventService.Object);
+        _mockEventValidator = new Mock<IValidator<Event>>();
+        _eventController = new EventController(_mockEventService.Object, _mockEventValidator.Object);
     }
 
     [Fact]

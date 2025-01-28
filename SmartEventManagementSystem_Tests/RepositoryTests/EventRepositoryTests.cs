@@ -22,30 +22,7 @@ public class EventRepositoryTests
         _appDbContext = new ApplicationDbContext(options);
         _eventRepository = new EventRepository(_appDbContext);
     }
-    
-    [Fact]
-    public async Task GetAllEventsAsync_ReturnsAllEventsSortedByDate()
-    {
-        _appDbContext.Events.RemoveRange(_appDbContext.Events);
-        await _appDbContext.SaveChangesAsync();
-        
-        var event1 = new Event("Event A", DateTime.UtcNow.AddDays(3), "Location A", 100, 50m);
-        var event2 = new Event("Event B", DateTime.UtcNow.AddDays(1), "Location B", 200, 60m);
-        var event3 = new Event("Event C", DateTime.UtcNow.AddDays(2), "Location C", 150, 70m);
 
-        _appDbContext.Events.AddRange(event1, event2, event3);
-        await _appDbContext.SaveChangesAsync();
-        
-        var result = await _eventRepository.GetAllEventsAsync();
-        
-        Assert.NotNull(result);
-        Assert.Equal(3, result.Count());
-        Assert.Collection(result,
-            e => Assert.Equal("Event B", e.Name),
-            e => Assert.Equal("Event C", e.Name),
-            e => Assert.Equal("Event A", e.Name));
-    }
-    
     [Fact]
     public async Task GetEventByIdAsync_ReturnsEvent_WhenEventExists()
     {

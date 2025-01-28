@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Service;
 
@@ -10,10 +13,12 @@ namespace Smart_Event_Management_System.Controllers;
 public class EventController : ControllerBase
 {
     private readonly IEventService _service;
+    private readonly IValidator<Event> _eventValidator;
 
-    public EventController(IEventService service)
+    public EventController(IEventService service, IValidator<Event> validator)
     {
         _service = service;
+        _eventValidator = validator;
     }
 
     [HttpGet]
@@ -39,10 +44,9 @@ public class EventController : ControllerBase
     [HttpGet("byName/{name}")]
     public async Task<ActionResult<Event>> GetAllEventsByName(string name)
     {
-        Console.WriteLine(name);
         var events = await _service.GetEventByName(name);
 
-        if (events == null) return NotFound();
+        if (events == null || !events.Any()) return NotFound();
 
         return Ok(events);
     }
@@ -50,7 +54,6 @@ public class EventController : ControllerBase
     [HttpGet("byLocation/{location}")]
     public async Task<ActionResult<Event>> GetAllEventsByLocation(string location)
     {
-        Console.WriteLine("location for event will be :"+ location); 
         var events = await _service.GetEventByLocation(location);
 
         if (events == null) return NotFound();
@@ -62,7 +65,20 @@ public class EventController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Event>> CreateEvent([FromBody] Event eventItem)
     {
-        if (eventItem == null) return BadRequest("Event data is required");
+        var validationResult = await _eventValidator.ValidateAsync(eventItem);
+
+        if (!validationResult.IsValid)
+        {
+            var errors = validationResult.Errors
+                .Select(error => new ValidationFailure(error.PropertyName, error.ErrorMessage))
+                .ToList();
+
+            var validationErrorResponse = new ValidationErrorResponse()
+            {
+                Message = "Validation errors occurred.",
+                Errors = errors
+            };
+        }
 
         var createdEvent = await _service.CreateEventAsync(eventItem);
         return CreatedAtAction(nameof(GetEvent), new { id = createdEvent.Id }, createdEvent);

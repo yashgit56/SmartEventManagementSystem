@@ -10,6 +10,7 @@ using Smart_Event_Management_System.Repository;
 using Smart_Event_Management_System.Service;
 using Smart_Event_Management_System.Validators;
 using MassTransit;
+using Smart_Event_Management_System.GlobalExceptionHandler;
 using Event = Smart_Event_Management_System.Models.Event;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -117,6 +118,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

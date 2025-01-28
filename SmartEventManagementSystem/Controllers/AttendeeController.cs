@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Smart_Event_Management_System.CustomException;
 using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Service;
+using Smart_Event_Management_System.Validators;
 
 namespace Smart_Event_Management_System.Controllers;
 
@@ -12,74 +15,51 @@ namespace Smart_Event_Management_System.Controllers;
 public class AttendeeController : ControllerBase
 {
     private readonly IAttendeeService _service;
+    private readonly IValidator<Attendee> _attendeeValidator;
 
-    public AttendeeController(IAttendeeService service)
+    public AttendeeController(IAttendeeService service, IValidator<Attendee> validator)
     {
         _service = service;
+        _attendeeValidator = validator;
     }
 
     [Authorize(Roles = "Admin")]
     [HttpGet("all")]
     public async Task<ActionResult<IEnumerable<Attendee>>> GetAllAttendees()
     {
-        try
-        {
-            var attendees = await _service.GetAllAttendeesAsync();
-
-            return Ok(attendees);
-        }
-        catch (NotFoundException e)
-        {
-            return NotFound(new ErrorResponse()
-            {
-                Message = e.Message
-            });
-        }
+        var attendees = await _service.GetAllAttendeesAsync();
+        return Ok(attendees);
     }
 
     [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAttendee(int id)
     {
-        try
-        {
-            var attendee = await _service.GetAttendeeByIdAsync(id);
-            return Ok(attendee);
-        }
-        catch (InvalidIDException ex)
-        {
-            return NotFound(new ErrorResponse()
-            {
-                Message = ex.Message
-            });
-        }
-        catch (NotFoundException ex)
-        {
-            return NotFound(new ErrorResponse()
-            {
-                Message = ex.Message
-            });
-        }
+        var attendee = await _service.GetAttendeeByIdAsync(id);
+        return Ok(attendee);
     }
 
     [HttpPost("register")]
     public async Task<ActionResult<Attendee>> CreateAttendee([FromBody] Attendee attendee)
     {
-        try
-        {
-            var createdAttendee = await _service.CreateAttendeeAsync(attendee);
-            
-            Console.WriteLine(createdAttendee?.ToString());
-        
-            return CreatedAtAction(nameof(GetAttendee), new { id = createdAttendee?.Id }, createdAttendee);
-        }
-        catch (UserAlreadyExistException e)
-        {
-            return NotFound(new ErrorResponse()
+        var validationResult = await _attendeeValidator.ValidateAsync(attendee);
+
+        if (!validationResult.IsValid) {
+            var errors = validationResult.Errors
+                .Select(error => new ValidationFailure(error.PropertyName, error.ErrorMessage))
+                .ToList();
+
+            var validationErrorResponse = new ValidationErrorResponse()
             {
-                Message = e.Message 
-            });
+                Message = "Validation errors occurred.",
+                Errors = errors
+            };
+
+            return BadRequest(validationErrorResponse);
         }
+        
+        var createdAttendee = await _service.CreateAttendeeAsync(attendee);
+        return CreatedAtAction(nameof(GetAttendee), new { id = createdAttendee?.Id }, createdAttendee);
     }
 
     [Authorize]
@@ -97,17 +77,7 @@ public class AttendeeController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAttendee(int id)
     {
-        try
-        {
-            await _service.DeleteAttendeeAsync(id);
-            return NoContent();
-        }
-        catch (Exception ex) when (ex is InvalidIDException or NotFoundException)
-        {
-            return NotFound(new ErrorResponse()
-            {
-                Message = ex.Message
-            });
-        }
+        await _service.DeleteAttendeeAsync(id);
+        return NoContent();
     }
 }

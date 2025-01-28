@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
@@ -12,10 +13,12 @@ namespace Smart_Event_Management_System.Controllers;
 public class TicketController : ControllerBase
 {
     private readonly ITicketService _service;
+    private readonly IValidator<Ticket> _ticketValidator;
     
-    public TicketController(ITicketService service)
+    public TicketController(ITicketService service, IValidator<Ticket> validator)
     {
         _service = service;
+        _ticketValidator = validator;
     }
 
     [Authorize(Roles = "Admin")]
@@ -50,21 +53,14 @@ public class TicketController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Ticket>> CreateTicket([FromBody] TicketDto ticketDto)
     {
-        try
-        {
-            var createdTicket = await _service.CreateTicketAsync(ticketDto);
+        
+        var createdTicket = await _service.CreateTicketAsync(ticketDto);
 
-            return CreatedAtAction(
-                nameof(GetTicketById),
-                new { id = createdTicket.Id },
-                createdTicket
+        return CreatedAtAction(
+            nameof(GetTicketById),
+            new { id = createdTicket.Id },
+            createdTicket
             );
-        }
-        catch (Exception e) when (e is ArgumentNullException || e is ArgumentException)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
     }
 
 

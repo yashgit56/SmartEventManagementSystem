@@ -50,33 +50,13 @@ public class AdminController : ControllerBase
     [HttpGet]
     public ActionResult<Admin>? GetAdminByUsernameAndPassword(string username, string password)
     {
-        try
-        {
-            var admin = _adminService.GetAdminByUsernameAndPassword(username, password);
+        var admin = _adminService.GetAdminByUsernameAndPassword(username, password);
 
-            if (admin == null)
-            {
-                throw new NotFoundException($"no admin found with username {username}");
-            }
+        if (admin == null)
+        { 
+            throw new NotFoundException($"no admin found with username {username}");
+        }
 
-            return Ok(admin);
-        }
-        catch (NotFoundException e)
-        {
-            return NotFound(new ErrorResponse()
-            {
-                Message = e.Message
-            });
-        }
-        catch (Exception ex)
-        {
-            return new ObjectResult(new ErrorResponse()
-            {
-                Message = "An unexpected error occurred."
-            })
-            {
-                StatusCode = 500
-            };
-        }
+        return Ok(admin);
     }
 }
