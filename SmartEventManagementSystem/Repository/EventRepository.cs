@@ -21,7 +21,9 @@ public class EventRepository : IEventRepository
 
     public async Task<Event?> GetEventByIdAsync(int id)
     {
-        return (await _context.Events.FindAsync(id));
+        return await _context.Events
+            .Include(a => a.Tickets)
+            .FirstOrDefaultAsync(a => a.Id == id);
     }
 
     public async Task<List<Event>> GetAllEventsByName(string name)

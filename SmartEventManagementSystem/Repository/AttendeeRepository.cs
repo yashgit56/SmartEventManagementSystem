@@ -26,7 +26,16 @@ public class AttendeeRepository : IAttendeeRepository
 
     public async Task<Attendee?> GetAttendeeByIdAsync(int id)
     {
-        return await _context.Attendees.FindAsync(id) ;
+        return await _context.Attendees
+            .Include(a => a.Tickets)
+            .FirstOrDefaultAsync(a => a.Id == id);
+    }
+
+    public async Task<Attendee?> GetAttendeeByUsernameAsync(string username)
+    {
+        var attendee = await _context.Attendees.FirstOrDefaultAsync(attendee => attendee!.Username == username);
+
+        return attendee;
     }
 
     public async Task<Attendee?> CreateAttendeeAsync(Attendee attendee)

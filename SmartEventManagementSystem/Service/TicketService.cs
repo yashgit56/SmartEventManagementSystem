@@ -3,16 +3,19 @@ using Smart_Event_Management_System.CustomException;
 using Smart_Event_Management_System.Dto;
 using Smart_Event_Management_System.Models;
 using Smart_Event_Management_System.Repository;
+using System.Security.Claims;
 
 namespace Smart_Event_Management_System.Service;
 
 public class TicketService : ITicketService
 {
     private readonly ITicketRepository _ticketRepository;
+    private readonly IAttendeeService _attendeeService;
 
-    public TicketService(ITicketRepository ticketRepository)
+    public TicketService(ITicketRepository ticketRepository, IAttendeeService attendeeService)
     {
         _ticketRepository = ticketRepository;
+        _attendeeService = attendeeService;
     }
 
     public async Task<IEnumerable<Ticket>> GetAllTicketsAsync()
@@ -41,14 +44,14 @@ public class TicketService : ITicketService
 
     public async Task<Ticket> GetTicketByIdAsync(int id)
     {
-        var tickets = await _ticketRepository.GetTicketByIdAsync(id);
+        var ticket = await _ticketRepository.GetTicketByIdAsync(id);
         
-        if (tickets == null)
+        if (ticket == null)
         {
             throw new NoTicketFoundException("No Ticket found");
         }
 
-        return tickets;
+        return ticket;
     }
 
     public async Task<Ticket> CreateTicketAsync(TicketDto ticketDto)
@@ -56,13 +59,16 @@ public class TicketService : ITicketService
         return await _ticketRepository.CreateTicketAsync(ticketDto);
     }
 
-    public async Task<bool> UpdateTicketAsync(int id, Ticket updatedTicket)
+    public async Task<bool> DeleteTicketAsync(int id, string username)
     {
-        return await _ticketRepository.UpdateTicketAsync(id, updatedTicket);
-    }
+        var ticket = await GetTicketByIdAsync(id);
+        var user = await _attendeeService.GetAttendeeByUsername(username);
 
-    public async Task<bool> DeleteTicketAsync(int id)
-    {
+        if (ticket.AttendeeId != user.Id)
+        {
+            throw new UnauthorizedAccessException("You are not autorized to delete this ticket");
+        }
+        
         return await _ticketRepository.DeleteTicketAsync(id);
     }
 

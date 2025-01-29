@@ -9,6 +9,8 @@ public interface IAttendeeService
 
     Task<Attendee> GetAttendeeByIdAsync(int id);
 
+    Task<Attendee> GetAttendeeByUsername(string username);
+
     Task<Attendee?> CreateAttendeeAsync(Attendee attendee);
 
     Task<bool> UpdateAttendeeAsync(int id, Attendee attendee);

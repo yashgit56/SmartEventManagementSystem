@@ -10,12 +10,14 @@ using Smart_Event_Management_System.CustomException;
 public class TicketServiceTests
 {
     private readonly Mock<ITicketRepository> _mockTicketRepository;
+    private readonly Mock<IAttendeeService> _attendeeService;
     private readonly TicketService _ticketService;
 
     public TicketServiceTests()
     {
         _mockTicketRepository = new Mock<ITicketRepository>();
-        _ticketService = new TicketService(_mockTicketRepository.Object);
+        _attendeeService = new Mock<IAttendeeService>();
+        _ticketService = new TicketService(_mockTicketRepository.Object, _attendeeService.Object); 
     }
 
     [Fact]
@@ -89,21 +91,6 @@ public class TicketServiceTests
 
         // Assert
         result.Should().BeEquivalentTo(ticket);
-    }
-
-    [Fact]
-    public async Task UpdateTicketAsync_ShouldReturnTrueIfUpdated()
-    {
-        // Arrange
-        var ticket = new Ticket { Id = 1, Price = 10 };
-        _mockTicketRepository.Setup(repo => repo.UpdateTicketAsync(1, ticket))
-            .ReturnsAsync(true);
-
-        // Act
-        var result = await _ticketService.UpdateTicketAsync(1, ticket);
-
-        // Assert
-        result.Should().BeTrue();
     }
 
     [Fact]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
+using Microsoft.Extensions.Logging;
 
 namespace SmartEventManagementSystem_Tests.ControllerTests;
 
@@ -17,13 +18,15 @@ public class EventControllerTests
 {
     private readonly Mock<IEventService> _mockEventService;
     private readonly Mock<IValidator<Event>> _mockEventValidator;
+    private readonly Mock<ILogger<EventController>> _controller;
     private readonly EventController _eventController;
 
     public EventControllerTests()
     {
         _mockEventService = new Mock<IEventService>();
         _mockEventValidator = new Mock<IValidator<Event>>();
-        _eventController = new EventController(_mockEventService.Object, _mockEventValidator.Object);
+        _controller = new Mock<ILogger<EventController>>();
+        _eventController = new EventController(_mockEventService.Object, _mockEventValidator.Object, _controller.Object);
     }
 
     [Fact]

@@ -52,6 +52,13 @@ public class AttendeeService : IAttendeeService
         return attendee;
     }
 
+    public async Task<Attendee> GetAttendeeByUsername(string username)
+    {
+        var attendee = await _attendeeRepository.GetAttendeeByUsernameAsync(username);
+
+        return attendee;
+    }
+
     public async Task<Attendee?> CreateAttendeeAsync(Attendee attendee)
     {
         var password = attendee.HashPassword;
@@ -69,7 +76,7 @@ public class AttendeeService : IAttendeeService
         {
             var message = JsonSerializer.Serialize(tempAttendee);
             var body = Encoding.UTF8.GetBytes(message);
-
+            
             var passAttendeeObj = new AttendeeEmailMessage()
             {
                 Message = body

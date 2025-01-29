@@ -13,9 +13,7 @@ public interface ITicketService
 
     Task<Ticket> CreateTicketAsync(TicketDto ticketDto);
 
-    Task<bool> UpdateTicketAsync(int id, Ticket ticket);
-
-    Task<bool> DeleteTicketAsync(int id);
+    Task<bool> DeleteTicketAsync(int id, string username);
 
     Task<List<TicketSalesDto>> GetTicketSalesForEventAsync(int eventId);
 }

@@ -121,28 +121,6 @@ public class TicketControllerTests
     }
 
     [Fact]
-    public async Task UpdateTicket_WhenTicketExists_ReturnsNoContent()
-    {
-        var ticket = new Ticket(1, 1, 50, DateTime.Now);
-        _mockTicketService.Setup(service => service.UpdateTicketAsync(1, ticket)).ReturnsAsync(true);
-
-        var result = await _ticketController.UpdateTicket(1, ticket);
-
-        Assert.IsType<NoContentResult>(result);
-    }
-
-    [Fact]
-    public async Task UpdateTicket_WhenTicketDoesNotExist_ReturnsNotFound()
-    {
-        var ticket = new Ticket(1, 1, 50, DateTime.Now);
-        _mockTicketService.Setup(service => service.UpdateTicketAsync(It.IsAny<int>(), It.IsAny<Ticket>())).ReturnsAsync(false);
-
-        var result = await _ticketController.UpdateTicket(1, ticket);
-
-        Assert.IsType<NotFoundResult>(result);
-    }
-
-    [Fact]
     public async Task DeleteTicket_WhenTicketExists_ReturnsNoContent()
     {
         _mockTicketService.Setup(service => service.DeleteTicketAsync(1)).ReturnsAsync(true);

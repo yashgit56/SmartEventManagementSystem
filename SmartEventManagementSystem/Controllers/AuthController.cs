@@ -26,9 +26,7 @@ public class AuthController : ControllerBase
     [HttpPost("Admin/login")]
     public IActionResult LoginAdmin([FromBody] LoginRequest request)
     {
-        Admin? adminUser;
-        
-        adminUser = _adminService.GetAdminByUsernameAndPassword(request.Username!, request.Password!);
+        var adminUser = _adminService.GetAdminByUsernameAndPassword(request.Username!, request.Password!);
 
         if (adminUser == null) return Unauthorized(new { message = "Invalid username or password" });
         
@@ -45,9 +43,7 @@ public class AuthController : ControllerBase
     [HttpPost("Attendee/login")]
     public IActionResult LoginUser([FromBody] LoginRequest request)
     {
-        Attendee? attendeeUser;
-        
-        attendeeUser = _attendeeService.ValidateAttendee(request.Username!, request.Password!);
+        var attendeeUser = _attendeeService.ValidateAttendee(request.Username!, request.Password!);
 
         if (attendeeUser == null) return Unauthorized(new { message = "Invalid username or password" });
         

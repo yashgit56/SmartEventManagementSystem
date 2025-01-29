@@ -32,11 +32,24 @@ public class TicketRepository : ITicketRepository
 
     public async Task<Ticket> CreateTicketAsync(TicketDto ticketDto)
     {
-        var eventItem = await _context.Events.FindAsync(ticketDto.EventId);
-        var attendee = await _context.Attendees.FindAsync(ticketDto.AttendeeId);
-        
-        if (eventItem == null) throw new ArgumentException("Invalid Event ID");
-        if(attendee == null) throw new ArgumentException("Invalid Attendee ID");
+        var attendee = await _context.Attendees
+            .Include(a => a.Tickets)
+            .FirstOrDefaultAsync(a => a.Id == ticketDto.AttendeeId);
+
+        var eventItem = await _context.Events
+            .Include(a => a.Tickets)
+            .FirstOrDefaultAsync(a => a.Id == ticketDto.EventId);
+
+        // await Task.WhenAll(attendeeTask, eventItemTask);
+        //
+        // var attendee = await attendeeTask;
+        // var eventItem = await eventItemTask;
+
+        if (attendee == null)
+            throw new NotFoundException("Attendee not found.");
+
+        if (eventItem == null)
+            throw new NotFoundException("Event not found.");
 
         if (eventItem.Tickets.Count() >= eventItem.Capacity)
             throw new InvalidOperationException("Event reached its maximum capacity");
@@ -54,31 +67,14 @@ public class TicketRepository : ITicketRepository
             PurchaseDate = DateTime.Now,
             IsCheckedIn = false,
         };
-        // ticket.Event = eventItem;
-        // ticket.Attendee = attendee;
 
         attendee.Tickets.Add(ticket);
         eventItem.Tickets.Add(ticket);
+        
         _context.Tickets.Add(ticket);
+        
         await _context.SaveChangesAsync();
         return ticket;
-    }
-
-    public async Task<bool> UpdateTicketAsync(int id, Ticket updatedTicket)
-    {
-        var ticket = await _context.Tickets.FindAsync(id);
-        if (ticket == null) return false;
-
-        ticket.EventId = updatedTicket.EventId;
-        ticket.AttendeeId = updatedTicket.AttendeeId;
-        ticket.Price = updatedTicket.Price;
-        ticket.PurchaseDate = updatedTicket.PurchaseDate;
-        ticket.IsCheckedIn = updatedTicket.IsCheckedIn;
-
-        _context.Entry(ticket).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
-
-        return true;
     }
 
     public async Task<bool> DeleteTicketAsync(int id)

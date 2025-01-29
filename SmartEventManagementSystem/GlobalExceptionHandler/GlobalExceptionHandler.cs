@@ -35,6 +35,21 @@ public class GlobalExceptionHandlerMiddleware
                 
         switch (ex)
         {
+            case UnauthorizedAccessException uae:
+                message = uae.Message;
+                statusCode = (int)HttpStatusCode.Unauthorized;
+                break;
+            
+            case ArgumentNullException argNullEx:
+                message = argNullEx.Message;
+                statusCode = (int)HttpStatusCode.BadRequest;
+                break;
+            
+            case ArgumentException ae:
+                message = ae.Message ;
+                statusCode = (int)HttpStatusCode.BadRequest ;
+                break;
+            
             case NotFoundException notFoundEx:
                 message = notFoundEx.Message;
                 statusCode = (int)HttpStatusCode.NotFound;
@@ -68,11 +83,6 @@ public class GlobalExceptionHandlerMiddleware
             case NoTicketFoundException noTicketFoundEx:
                 message = noTicketFoundEx.Message;
                 statusCode = (int)HttpStatusCode.NotFound;
-                break;
-            
-            case ArgumentNullException argNullEx:
-                message = argNullEx.Message;
-                statusCode = (int)HttpStatusCode.BadRequest;
                 break;
 
             case InvalidOperationException invalidOpEx:

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using Smart_Event_Management_System.Models;
 
 namespace Smart_Event_Management_System.Validators;
@@ -23,5 +24,10 @@ public class AttendeeValidator : AbstractValidator<Attendee>
 
         RuleFor(a => a.HashPassword)
             .NotEmpty().WithMessage("Password is required.");
+    }
+    
+    public Task<ValidationResult> ValidateAsync(Attendee attendee)
+    {
+        return base.ValidateAsync(attendee);
     }
 }

@@ -32,9 +32,9 @@ public class EventService : IEventService
     {
         var events = await _eventRepository.GetAllEventsByName(name);
         
-        if (events == null || !events.Any())
+        if (events == null || events.Count == 0)
         {
-            throw new NoEventFoundException("no events found by that name");
+            throw new NoEventFoundException("No Events Found by that name");
         }
 
         return events;
@@ -44,9 +44,9 @@ public class EventService : IEventService
     {
         var events = await _eventRepository.GetAllEventsByLocation(location);
         
-        if (events == null || !events.Any())
+        if (events == null || events.Count == 0)
         {
-            throw new NoEventFoundException("no events found at that location");
+            throw new NoEventFoundException("No Events found at that location");
         }
 
         return events;
@@ -58,7 +58,7 @@ public class EventService : IEventService
 
         if (eventInfo == null)
         {
-            throw new NoEventFoundException("no event exist with that id");
+            throw new NoEventFoundException("No Event exist with that id");
         }
 
         return eventInfo;
