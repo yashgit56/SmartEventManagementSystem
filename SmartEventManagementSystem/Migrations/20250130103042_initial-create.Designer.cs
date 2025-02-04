@@ -12,8 +12,8 @@ using Smart_Event_Management_System.Context;
 namespace Smart_Event_Management_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250105122802_Initial-Create")]
-    partial class InitialCreate
+    [Migration("20250130103042_initial-create")]
+    partial class initialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,12 +34,15 @@ namespace Smart_Event_Management_System.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("HashPassword")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -59,7 +62,7 @@ namespace Smart_Event_Management_System.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("HashPassword")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -74,28 +77,6 @@ namespace Smart_Event_Management_System.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Attendees");
-                });
-
-            modelBuilder.Entity("Smart_Event_Management_System.Models.CheckInLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AttendeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CheckInTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CheckInLogs");
                 });
 
             modelBuilder.Entity("Smart_Event_Management_System.Models.Event", b =>
@@ -115,6 +96,9 @@ namespace Smart_Event_Management_System.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("EventStatus")
+                        .HasColumnType("int");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -122,9 +106,6 @@ namespace Smart_Event_Management_System.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("eventStatus")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -154,7 +135,7 @@ namespace Smart_Event_Management_System.Migrations
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("ticketStatus")
+                    b.Property<int>("TicketStatus")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -168,15 +149,20 @@ namespace Smart_Event_Management_System.Migrations
 
             modelBuilder.Entity("Smart_Event_Management_System.Models.Ticket", b =>
                 {
-                    b.HasOne("Smart_Event_Management_System.Models.Attendee", null)
+                    b.HasOne("Smart_Event_Management_System.Models.Attendee", "Attendee")
                         .WithMany("Tickets")
-                        .HasForeignKey("AttendeeId");
+                        .HasForeignKey("AttendeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Smart_Event_Management_System.Models.Event", null)
+                    b.HasOne("Smart_Event_Management_System.Models.Event", "Event")
                         .WithMany("Tickets")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Attendee");
+
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("Smart_Event_Management_System.Models.Attendee", b =>

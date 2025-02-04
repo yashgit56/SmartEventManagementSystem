@@ -14,21 +14,7 @@ public class AdminRepository : IAdminRepository
 
     public Admin? GetAdminByUsernameAndPassword(string username, string password)
     {
-        return _context.Admins.FirstOrDefault(admin =>
-            admin.Username == username && admin.HashPassword == password);
-    }
-
-    public Admin? CreateAdmin(Admin admin)
-    {
-        var adminUser = _context.Admins.FirstOrDefault(a => a.Username == admin.Username || a.Email == admin.Email);
-
-        if (adminUser != null)
-        {
-            return null;
-        }
-        
-        _context.Admins.Add(admin);
-        _context.SaveChanges();
-        return admin;
+        return _context.Admins.FirstOrDefault(manager =>
+            manager.Username == username && manager.Password == password);
     }
 }

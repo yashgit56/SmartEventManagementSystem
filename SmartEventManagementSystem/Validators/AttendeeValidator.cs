@@ -22,7 +22,7 @@ public class AttendeeValidator : AbstractValidator<Attendee>
             .MaximumLength(15).WithMessage("Phone number cannot exceed 15 characters.")
             .Matches(@"^\d{10,15}$").WithMessage("Invalid phone number format.");
 
-        RuleFor(a => a.HashPassword)
+        RuleFor(a => a.Password)
             .NotEmpty().WithMessage("Password is required.");
     }
     

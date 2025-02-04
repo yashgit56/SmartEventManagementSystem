@@ -2,8 +2,14 @@ using MassTransit;
 using SmartEventManagementSystem_EmailService;
 using SmartEventManagementSystem_EmailService.Models;
 using DotNetEnv;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()  // Log to console
+    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)  // Optional: Log to a file
+    .CreateLogger();
 
 Env.Load();
 
@@ -67,5 +73,17 @@ app.MapControllerRoute(
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-
-app.Run();
+try
+{
+    Log.Information("Application Starting...");
+    
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application failed to start.");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

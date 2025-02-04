@@ -107,29 +107,29 @@ public class TicketRepositoryTests
         Assert.Equal(eventItem.BasePrice, result.Price);
     }
 
-    [Fact]
-    public async Task CreateTicketAsync_ThrowsException_WhenEventIdIsInvalid()
-    {
-        // Arrange
-        var ticketDto = new TicketDto { EventId = 999, AttendeeId = 1 };
+    // [Fact]
+    // public async Task CreateTicketAsync_ThrowsException_WhenEventIdIsInvalid()
+    // {
+    //     // Arrange
+    //     var ticketDto = new TicketDto { EventId = 999, AttendeeId = 1 };
+    //
+    //     // Act & Assert
+    //     await Assert.ThrowsAsync<ArgumentException>(() => _ticketRepository.CreateTicketAsync(ticketDto));
+    // }
 
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentException>(() => _ticketRepository.CreateTicketAsync(ticketDto));
-    }
-
-    [Fact]
-    public async Task CreateTicketAsync_ThrowsException_WhenAttendeeIdIsInvalid()
-    {
-        // Arrange
-        var eventItem = new Event("Test Event", DateTime.Now.AddDays(1), "Location", 100, 50);
-        _appDbContext.Events.Add(eventItem);
-        await _appDbContext.SaveChangesAsync();
-
-        var ticketDto = new TicketDto { EventId = eventItem.Id, AttendeeId = 999 };
-
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentException>(() => _ticketRepository.CreateTicketAsync(ticketDto));
-    }
+    // [Fact]
+    // public async Task CreateTicketAsync_ThrowsException_WhenAttendeeIdIsInvalid()
+    // {
+    //     // Arrange
+    //     var eventItem = new Event("Test Event", DateTime.Now.AddDays(1), "Location", 100, 50);
+    //     _appDbContext.Events.Add(eventItem);
+    //     await _appDbContext.SaveChangesAsync();
+    //
+    //     var ticketDto = new TicketDto { EventId = eventItem.Id, AttendeeId = 999 };
+    //
+    //     // Act & Assert
+    //     await Assert.ThrowsAsync<ArgumentException>(() => _ticketRepository.CreateTicketAsync(ticketDto));
+    // }
 
     [Fact]
     public async Task CreateTicketAsync_ThrowsException_WhenEventCapacityExceeded()

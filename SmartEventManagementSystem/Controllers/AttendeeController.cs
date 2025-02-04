@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Security.Claims;
+using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +41,13 @@ public class AttendeeController : ControllerBase
         }
         
         var attendee = await _service.GetAttendeeByIdAsync(id);
-        return Ok(attendee);
+        
+        return Ok(new AttendeeDetailsDto()
+        {
+            Username = attendee.Username,
+            Email = attendee.Email,
+            PhoneNumber = attendee.PhoneNumber
+        });
     }
 
     [HttpPost("register")]
@@ -63,7 +70,12 @@ public class AttendeeController : ControllerBase
         }
         
         var createdAttendee = await _service.CreateAttendeeAsync(attendee);
-        return CreatedAtAction(nameof(GetAttendee), new { id = createdAttendee?.Id }, createdAttendee);
+
+        return Ok(new
+        {
+            SuccessMessage = "You registered successfully on system",
+            createdAttendee
+        });
     }
 
     [Authorize]
@@ -91,6 +103,14 @@ public class AttendeeController : ControllerBase
             return BadRequest(validationErrorResponse);
         }
         
+        var authenticatedUsername = User.FindFirst(ClaimTypes.Name)?.Value;
+        var attendee = await _service.GetAttendeeByUsername(authenticatedUsername);
+
+        if (id != attendee.Id)
+        {
+            throw new UnauthorizedAccessException("You are Unauthorized to update attendee");
+        }
+        
         var result = await _service.UpdateAttendeeAsync(id, updatedAttendee);
 
         if (!result) return NotFound();
@@ -105,6 +125,14 @@ public class AttendeeController : ControllerBase
         if (id <= 0)
         {
             throw new InvalidIDException("Attendee Id must be greater than zero.");
+        }
+        
+        var authenticatedUsername = User.FindFirst(ClaimTypes.Name)?.Value;
+        var attendee = await _service.GetAttendeeByUsername(authenticatedUsername);
+
+        if (id != attendee.Id)
+        {
+            throw new UnauthorizedAccessException("You are Unauthorized to delete attendee");
         }
         
         await _service.DeleteAttendeeAsync(id);

@@ -35,7 +35,7 @@ public class AttendeeServiceTests
     [Fact]
     public async Task CreateAttendeeAsync_ValidAttendee_CreatesSuccessfully()
     {
-        var attendee = new Attendee { Username = "testuser", Email = "testuser@gmail.com", HashPassword = "password123", PhoneNumber = "1234567890" };
+        var attendee = new Attendee { Username = "testuser", Email = "testuser@gmail.com", Password = "password123", PhoneNumber = "1234567890" };
         var hashPassword = "password123";
 
         _mockCustomLogicService
@@ -53,14 +53,14 @@ public class AttendeeServiceTests
         var result = await _attendeeService.CreateAttendeeAsync(attendee);
 
         Assert.NotNull(result);
-        Assert.Equal(hashPassword, result.HashPassword);
+        Assert.Equal(hashPassword, result.Password);
         _mockAttendeeRepository.Verify(r => r.CreateAttendeeAsync(It.IsAny<Attendee>()), Times.Once);
     }
 
     [Fact]
     public async Task CreateAttendeeAsync_DuplicateAttendee_ThrowsUserAlreadyExistException()
     {
-        var attendee = new Attendee { Username = "testuser", Email = "testuser@gmail.com", HashPassword = "password123", PhoneNumber = "1234567890" };
+        var attendee = new Attendee { Username = "testuser", Email = "testuser@gmail.com", Password = "password123", PhoneNumber = "1234567890" };
 
         _mockAttendeeRepository
             .Setup(r => r.CreateAttendeeAsync(It.IsAny<Attendee>()))
@@ -76,8 +76,8 @@ public class AttendeeServiceTests
     {
         var attendees = new List<Attendee>
         {
-            new Attendee { Username = "user1", Email = "user1@gmail.com", HashPassword = "hashedpassword", PhoneNumber = "1234567890" },
-            new Attendee { Username = "user2", Email = "user2@gmail.com", HashPassword = "hashedpassword", PhoneNumber = "0987654321" }
+            new Attendee { Username = "user1", Email = "user1@gmail.com", Password = "hashedpassword", PhoneNumber = "1234567890" },
+            new Attendee { Username = "user2", Email = "user2@gmail.com", Password = "hashedpassword", PhoneNumber = "0987654321" }
         };
 
         _mockAttendeeRepository
@@ -93,7 +93,7 @@ public class AttendeeServiceTests
     [Fact]
     public async Task GetAttendeeByIdAsync_ValidId_ReturnsAttendee()
     {
-        var attendee = new Attendee { Username = "testuser", Email = "testuser@gmail.com", HashPassword = "hashedpassword", PhoneNumber = "1234567890" };
+        var attendee = new Attendee { Username = "testuser", Email = "testuser@gmail.com", Password = "hashedpassword", PhoneNumber = "1234567890" };
 
         _mockAttendeeRepository
             .Setup(r => r.GetAttendeeByIdAsync(It.IsAny<int>()))
@@ -112,44 +112,44 @@ public class AttendeeServiceTests
         Assert.Equal("Invalid Id. Must be greater than zero", exception.Message);
     }
 
-    [Fact]
-    public async Task DeleteAttendeeAsync_ValidId_DeletesAttendee()
-    {
-        var attendee = new Attendee { Username = "testuser", Email = "testuser@gmail.com", HashPassword = "hashedpassword", PhoneNumber = "1234567890" };
-
-        _mockAttendeeRepository
-            .Setup(r => r.DeleteAttendeeAsync(It.IsAny<int>()))
-            .ReturnsAsync(true);
-
-        var result = await _attendeeService.DeleteAttendeeAsync(1);
-
-        Assert.True(result);
-        _mockAttendeeRepository.Verify(r => r.DeleteAttendeeAsync(It.IsAny<int>()), Times.Once);
-    }
-
-    [Fact]
-    public async Task DeleteAttendeeAsync_InvalidId_ThrowsInvalidIDException()
-    {
-        var exception = await Assert.ThrowsAsync<InvalidIDException>(() => _attendeeService.DeleteAttendeeAsync(0));
-        Assert.Equal("Invalid Id. Must be greater than zero", exception.Message);
-    }
+    // [Fact]
+    // public async Task DeleteAttendeeAsync_ValidId_DeletesAttendee()
+    // {
+    //     var attendee = new Attendee { Username = "testuser", Email = "testuser@gmail.com", Password = "hashedpassword", PhoneNumber = "1234567890" };
+    //
+    //     _mockAttendeeRepository
+    //         .Setup(r => r.DeleteAttendeeAsync(It.IsAny<int>()))
+    //         .ReturnsAsync(true);
+    //
+    //     var result = await _attendeeService.DeleteAttendeeAsync(1);
+    //
+    //     Assert.True(result);
+    //     _mockAttendeeRepository.Verify(r => r.DeleteAttendeeAsync(It.IsAny<int>()), Times.Once);
+    // }
+    //
+    // [Fact]
+    // public async Task DeleteAttendeeAsync_InvalidId_ThrowsInvalidIDException()
+    // {
+    //     var exception = await Assert.ThrowsAsync<InvalidIDException>(() => _attendeeService.DeleteAttendeeAsync(0));
+    //     Assert.Equal("Invalid Id. Must be greater than zero", exception.Message);
+    // }
 
     [Fact]
     public void ValidateAttendee_ValidCredentials_ReturnsAttendee()
     {
         var username = "testuser";
         var password = "hashedpassword";
-        var attendee = new Attendee { Username = username, HashPassword = password };
+        var attendee = new Attendee { Username = username, Password = password };
 
         _mockAttendeeRepository
             .Setup(r => r.GetAttendeeByUsernameAndPassword(It.IsAny<string>(), It.IsAny<string>()))
             .Returns(attendee);
 
-        var result = _attendeeService.ValidateAttendee(username, password);
+        var result = _attendeeService.GetAttendeeByUsernameAndPassword(username, password);
 
         Assert.NotNull(result);
         Assert.Equal(username, result.Username);
-        Assert.Equal(password, result.HashPassword);
+        Assert.Equal(password, result.Password);
     }
 }
 

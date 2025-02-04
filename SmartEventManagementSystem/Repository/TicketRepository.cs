@@ -40,18 +40,13 @@ public class TicketRepository : ITicketRepository
             .Include(a => a.Tickets)
             .FirstOrDefaultAsync(a => a.Id == ticketDto.EventId);
 
-        // await Task.WhenAll(attendeeTask, eventItemTask);
-        //
-        // var attendee = await attendeeTask;
-        // var eventItem = await eventItemTask;
-
         if (attendee == null)
             throw new NotFoundException("Attendee not found.");
 
         if (eventItem == null)
             throw new NotFoundException("Event not found.");
 
-        if (eventItem.Tickets.Count() >= eventItem.Capacity)
+        if (eventItem.Tickets.Count >= eventItem.Capacity)
             throw new InvalidOperationException("Event reached its maximum capacity");
 
         if (DateTime.Now > eventItem.Date)
@@ -80,14 +75,12 @@ public class TicketRepository : ITicketRepository
     public async Task<bool> DeleteTicketAsync(int id)
     {
         var ticket = await _context.Tickets.FindAsync(id);
-        if (ticket != null)
-        {
-            _context.Tickets.Remove(ticket);
-            await _context.SaveChangesAsync();
-            return true;
-        }
+        if (ticket == null) return false;
+        
+        _context.Tickets.Remove(ticket);
+        await _context.SaveChangesAsync();
+        return true;
 
-        return false;
     }
 
     public async Task<List<TicketSalesDto>> GetTicketSalesForEventAsync(int eventId)

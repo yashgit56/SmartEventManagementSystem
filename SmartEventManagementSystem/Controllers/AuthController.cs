@@ -14,28 +14,27 @@ public class AuthController : ControllerBase
     private readonly IConfiguration _configuration;
     private readonly IJwtService _jwtService;
 
-    public AuthController(IAttendeeService attendeeService, IConfiguration configuration, IAdminService adminService,
+    public AuthController(IAttendeeService attendeeService, IConfiguration configuration, IAdminService AdminService,
         IJwtService jwtService)
     {
         _attendeeService = attendeeService;
         _configuration = configuration;
-        _adminService = adminService;
+        _adminService = AdminService;
         _jwtService = jwtService;
     }
 
     [HttpPost("Admin/login")]
     public IActionResult LoginAdmin([FromBody] LoginRequest request)
     {
-        var adminUser = _adminService.GetAdminByUsernameAndPassword(request.Username!, request.Password!);
+        var AdminUser = _adminService.GetAdminByUsernameAndPassword(request.Username!, request.Password!);
 
-        if (adminUser == null) return Unauthorized(new { message = "Invalid username or password" });
+        if (AdminUser == null) return Unauthorized(new { message = "Invalid username or password" });
         
-        var token = _jwtService.GenerateToken(adminUser, request);
-        Console.WriteLine(token);
+        var token = _jwtService.GenerateToken(AdminUser, request);
+        
         return Ok(new LoginResponse
         {
-            Token = token,
-            Role = request.Role
+            Token = token
         });
 
     }
@@ -43,16 +42,15 @@ public class AuthController : ControllerBase
     [HttpPost("Attendee/login")]
     public IActionResult LoginUser([FromBody] LoginRequest request)
     {
-        var attendeeUser = _attendeeService.ValidateAttendee(request.Username!, request.Password!);
+        var attendeeUser = _attendeeService.GetAttendeeByUsernameAndPassword(request.Username!, request.Password!);
 
         if (attendeeUser == null) return Unauthorized(new { message = "Invalid username or password" });
         
         var token = _jwtService.GenerateToken(attendeeUser, request);
-        Console.WriteLine(token);
+        
         return Ok(new LoginResponse
         {
-            Token = token,
-            Role = request.Role
+            Token = token
         });
 
     }

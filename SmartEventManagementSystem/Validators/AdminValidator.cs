@@ -17,12 +17,12 @@ public class AdminValidator : AbstractValidator<Admin>
             .EmailAddress().WithMessage("Invalid email format.")
             .MaximumLength(150).WithMessage("Email cannot exceed 150 characters.");
 
-        RuleFor(a => a.HashPassword)
+        RuleFor(a => a.Password)
             .NotEmpty().WithMessage("Password is required.");
     }
     
-    public Task<ValidationResult> ValidateAsync(Admin admin)
+    public Task<ValidationResult> ValidateAsync(Admin Admin)
     {
-        return base.ValidateAsync(admin);
+        return base.ValidateAsync(Admin);
     }
 }

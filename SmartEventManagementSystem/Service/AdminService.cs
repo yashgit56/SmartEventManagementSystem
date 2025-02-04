@@ -8,41 +8,27 @@ namespace Smart_Event_Management_System.Service;
 
 public class AdminService : IAdminService
 {
-    private readonly IAdminRepository _adminRepository;
+    private readonly IAdminRepository _AdminRepository;
     private readonly CustomLogicService _customLogicService;
 
     public AdminService(CustomLogicService customLogicService,
-        IAdminRepository adminRepository)
+        IAdminRepository AdminRepository)
     {
         _customLogicService = customLogicService;
-        _adminRepository = adminRepository;
+        _AdminRepository = AdminRepository;
     }
 
     public Admin? GetAdminByUsernameAndPassword(string username, string password)
     {
         var hashPassword = _customLogicService.HashPassword(password);
 
-        var admin = _adminRepository.GetAdminByUsernameAndPassword(username, hashPassword);
+        var Admin = _AdminRepository.GetAdminByUsernameAndPassword(username, hashPassword);
 
-        if (admin == null)
+        if (Admin == null)
         {
             throw new NotFoundException("Admin does not exist with that username");
         }
 
-        return admin;
-    }
-
-    public Admin? CreateAdmin(Admin admin)
-    {
-        var hashPassword = _customLogicService.HashPassword(admin.HashPassword!);
-        var createdAdmin = new Admin(admin.Username!,admin.Email!,hashPassword) ;
-        var adminUser = _adminRepository.CreateAdmin(createdAdmin);
-
-        if (adminUser == null)
-        {
-            throw new UserAlreadyExistException("Admin already exist with that email or username");
-        }
-        
-        return adminUser; 
+        return Admin;
     }
 }

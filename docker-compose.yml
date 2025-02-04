@@ -1,0 +1,70 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Yash@2004
+      MYSQL_DATABASE: SmartEventManagementSystem
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672" # RabbitMQ management UI
+    networks:
+      - app-network
+
+  smarteventmanagementsystem:
+    image: smarteventmanagementsystem:latest
+    container_name: smarteventmanagementsystem
+    restart: always
+    depends_on:
+      - mysql
+      - rabbitmq
+    environment:
+      ConnectionStrings__MySqlConnection: "Server=mysql;Database=SmartEventManagementSystem;User=root;Password=Yash@2004;"
+      RabbitMQ__HostName: "rabbitmq"
+      RabbitMQ__Port: "5672"
+      RabbitMQ__Username: "guest"
+      RabbitMQ__Password: "guest"
+      Jwt__Key: "640781d146a8e42888b89edf7c7c432fc4a47fd7e3dcbf00da7159eb2c99b5a1"
+      Jwt__Issuer: "SmartEventManagementSystem"
+      Jwt__Audience: "SmartEventUsers"
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+  smarteventmanagementsystem_emailservice:
+    image: smarteventmanagementsystem_emailservice:latest
+    container_name: smarteventmanagementsystem_emailservice
+    restart: always
+    depends_on:
+      - rabbitmq
+    environment:
+      RabbitMQ__HostName: "rabbitmq"
+      RabbitMQ__Port: "5672"
+      RabbitMQ__Username: "guest"
+      RabbitMQ__Password: "guest"
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mysql-data:

@@ -9,6 +9,7 @@ using Smart_Event_Management_System.Service;
 
 namespace Smart_Event_Management_System.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class EventController : ControllerBase
@@ -44,7 +45,7 @@ public class EventController : ControllerBase
         {
             throw new InvalidIDException("Event Id must be greater than zero.");
         }
-        
+
         var eventItem = await _service.GetEventByIdAsync(id);
 
         if (eventItem == null) return NotFound();
@@ -59,7 +60,7 @@ public class EventController : ControllerBase
         {
             throw new ArgumentException("Event name can not be empty");
         }
-        
+
         var events = await _service.GetEventByName(name);
 
         if (events == null || !events.Any()) return NotFound();
@@ -74,7 +75,7 @@ public class EventController : ControllerBase
         {
             throw new ArgumentException("Event Location can not be empty");
         }
-        
+
         var events = await _service.GetEventByLocation(location);
 
         if (events == null) return NotFound();
@@ -115,7 +116,7 @@ public class EventController : ControllerBase
         {
             throw new InvalidIDException("Event Id must be greater than zero.");
         }
-        
+
         var validationResult = await _eventValidator.ValidateAsync(updatedEvent);
 
         if (!validationResult.IsValid)
@@ -132,8 +133,8 @@ public class EventController : ControllerBase
 
             return BadRequest(validationErrorResponse);
         }
-        
-        
+
+
         var result = await _service.UpdateEventAsync(id, updatedEvent);
 
         if (!result) return NotFound();
@@ -149,93 +150,58 @@ public class EventController : ControllerBase
         {
             throw new InvalidIDException("Event Id must be greater than zero.");
         }
-        
+
         var result = await _service.DeleteEventAsync(id);
 
         if (!result) return NotFound();
 
         return NoContent();
     }
-    
-        [HttpGet("upcoming")]
-        public async Task<ActionResult<List<EventDetailsDto>>> GetUpcomingEventsWithAttendeesAndTickets()
-        {
-            try
-            {
-                var result = await _service.GetUpcomingEventsWithAttendeesAndTicketsAsync();
-                if (result == null || result.Count == 0)
-                    return NotFound("No upcoming events found.");
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
 
-        // Action to get event with ticket status and capacity
-        [HttpGet("capacity-status")]
-        public async Task<ActionResult<List<EventCapacityDto>>> GetEventWithTicketStatusAndCapacity()
-        {
-            try
-            {
-                var result = await _service.GetEventWithTicketStatusAndCapacity();
-                if (result == null || result.Count == 0)
-                    return NotFound("No events found with ticket status and capacity.");
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
-
-        // Action to get total revenue for an event
-        [HttpGet("revenue/{eventId}")]
-        public async Task<ActionResult<decimal>> GetTotalRevenueForAnEvent(int eventId)
-        {
-            try
-            {
-                var result = await _service.GetTotalRevenueForAnEventAsync(eventId);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
-
-        // Action to get the most popular events (Top N)
-        [HttpGet("popular/{topN}")]
-        public async Task<ActionResult<List<EventPopularityDto>>> GetMostPopularEvents(int topN)
-        {
-            try
-            {
-                var result = await _service.GetMostPopularEventsAsync(topN);
-                if (result == null || result.Count == 0)
-                    return NotFound("No popular events found.");
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
-
-        // Action to get tickets sold per event
-        [HttpGet("sales")]
-        public async Task<ActionResult<List<EventSalesDto>>> GetTicketsSoldPerEvent()
-        {
-            try
-            {
-                var result = await _service.GetTicketsSoldPerEventAsync();
-                if (result == null || result.Count == 0)
-                    return NotFound("No sales data found.");
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
+    [Authorize(Roles = "Admin")]
+    [HttpGet("upcoming")]
+    public async Task<ActionResult<List<EventDetailsDto>>> GetUpcomingEventsWithAttendeesAndTickets()
+    {
+        var result = await _service.GetUpcomingEventsWithAttendeesAndTicketsAsync();
+        if (result.Count == 0)
+            return NotFound("No upcoming events found.");
+        return Ok(result);
     }
+
+    [Authorize(Roles = "Admin")]
+    [HttpGet("capacity-status")]
+    public async Task<ActionResult<List<EventCapacityDto>>> GetEventWithTicketStatusAndCapacity()
+    {
+        var result = await _service.GetEventWithTicketStatusAndCapacity();
+        if (result.Count == 0)
+            return NotFound("No events found with ticket status and capacity.");
+        return Ok(result);
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpGet("revenue/{eventId}")]
+    public async Task<ActionResult<decimal>> GetTotalRevenueForAnEvent(int eventId)
+    {
+        var result = await _service.GetTotalRevenueForAnEventAsync(eventId);
+        return Ok(result);
+    }
+    
+    [HttpGet("popular/{topN}")]
+    public async Task<ActionResult<List<EventPopularityDto>>> GetMostPopularEvents(int topN)
+    {
+        var result = await _service.GetMostPopularEventsAsync(topN);
+        if (result.Count == 0)
+            return NotFound("No popular events found.");
+        return Ok(result);
+    }
+    
+    [Authorize(Roles = "Admin")]
+    [HttpGet("sales")]
+    public async Task<ActionResult<List<EventSalesDto>>> GetTicketsSoldPerEvent()
+    {
+        var result = await _service.GetTicketsSoldPerEventAsync();
+        if (result.Count == 0)
+            return NotFound("No sales data found.");
+        return Ok(result);
+    }
+}

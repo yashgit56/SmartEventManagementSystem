@@ -6,5 +6,4 @@ public interface IAdminService
 {
     Admin? GetAdminByUsernameAndPassword(string username, string password);
     
-    Admin? CreateAdmin(Admin admin);
 }

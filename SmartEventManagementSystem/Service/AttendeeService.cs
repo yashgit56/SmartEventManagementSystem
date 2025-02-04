@@ -56,13 +56,17 @@ public class AttendeeService : IAttendeeService
     {
         var attendee = await _attendeeRepository.GetAttendeeByUsernameAsync(username);
 
+        if (attendee == null)
+        {
+            throw new NotFoundException("No attendee found with that username");
+        }
+
         return attendee;
     }
 
     public async Task<Attendee?> CreateAttendeeAsync(Attendee attendee)
     {
-        var password = attendee.HashPassword;
-        var hashPassword = _customLogicService.HashPassword(attendee.HashPassword);
+        var hashPassword = _customLogicService.HashPassword(attendee.Password);
         var tempAttendee = new Attendee(attendee.Username, attendee.Email, attendee.PhoneNumber, hashPassword);
 
         var createdAttendee = await _attendeeRepository.CreateAttendeeAsync(tempAttendee);
@@ -110,8 +114,6 @@ public class AttendeeService : IAttendeeService
 
     public async Task<bool> DeleteAttendeeAsync(int id)
     {
-        if (id <= 0) throw new InvalidIDException("Invalid Id. Must be greater than zero");
-
         var result = await _attendeeRepository.DeleteAttendeeAsync(id);
 
         if (!result)
@@ -122,11 +124,16 @@ public class AttendeeService : IAttendeeService
         return true;
     }
 
-    public Attendee? ValidateAttendee(string username, string password)
+    public Attendee GetAttendeeByUsernameAndPassword(string username, string password)
     {
         var hashPassword = _customLogicService.HashPassword(password);
 
         var attendee = _attendeeRepository.GetAttendeeByUsernameAndPassword(username, hashPassword);
+
+        if (attendee == null)
+        {
+            throw new NotFoundException("No Attendee found with that username");
+        }
 
         return attendee;
     }

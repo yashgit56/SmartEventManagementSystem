@@ -10,18 +10,18 @@ public class Admin
 
     public string Email { get; set; } = null!;
 
-    public string HashPassword { get; set; } = null!;
+    public string Password { get; set; } = null!;
 
     public Admin()
     {
         
     }
     
-    public Admin(string username, string email, string hashPassword)
+    public Admin(string username, string email, string password)
     {
         Username = username;
         Email = email;
-        HashPassword = hashPassword;
+        Password = password;
     }
 
     public override string ToString()

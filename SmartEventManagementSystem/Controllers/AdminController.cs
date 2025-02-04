@@ -23,40 +23,16 @@ public class AdminController : ControllerBase
         _adminValidator = adminValidator;
     }
 
-    [HttpPost("register")]
-    public async Task<IActionResult> CreateAdmin([FromBody] Admin admin)
-    {
-        
-        var validationResult = await _adminValidator.ValidateAsync(admin);
-
-        if (!validationResult.IsValid) {
-            var errors = validationResult.Errors
-                .Select(error => new ValidationFailure(error.PropertyName, error.ErrorMessage))
-                .ToList();
-
-            var validationErrorResponse = new ValidationErrorResponse()
-            {
-                Message = "Validation errors occurred.",
-                Errors = errors
-            };
-
-            return BadRequest(validationErrorResponse);
-        }
-
-        var createdAdmin = _adminService.CreateAdmin(admin);
-        return Ok(createdAdmin);
-    }
-
     [HttpGet]
     public ActionResult<Admin>? GetAdminByUsernameAndPassword(string username, string password)
     {
-        var admin = _adminService.GetAdminByUsernameAndPassword(username, password);
+        var Admin = _adminService.GetAdminByUsernameAndPassword(username, password);
 
-        if (admin == null)
+        if (Admin == null)
         { 
-            throw new NotFoundException($"no admin found with username {username}");
+            throw new NotFoundException($"no Admin found with username {username}");
         }
 
-        return Ok(admin);
+        return Ok(Admin);
     }
 }

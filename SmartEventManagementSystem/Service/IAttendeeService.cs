@@ -17,7 +17,7 @@ public interface IAttendeeService
 
     Task<bool> DeleteAttendeeAsync(int id);
 
-    Attendee? ValidateAttendee(string username, string password);
+    Attendee GetAttendeeByUsernameAndPassword(string username, string password);
 
     Task<List<AttendeeWithTicketsDto>> GetAttendeesWithTicketPurchaseHistory();
 }

@@ -9,24 +9,27 @@ using Smart_Event_Management_System.Service;
 
 namespace Smart_Event_Management_System.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class TicketController : ControllerBase
 {
-    private readonly ITicketService _service;
+    private readonly ITicketService _ticketService;
+    private readonly IAttendeeService _attendeeService;
     private readonly IValidator<Ticket> _ticketValidator;
     
-    public TicketController(ITicketService service, IValidator<Ticket> validator)
+    public TicketController(ITicketService ticketService, IValidator<Ticket> validator, IAttendeeService attendeeService)
     {
-        _service = service;
+        _ticketService = ticketService;
         _ticketValidator = validator;
+        _attendeeService = attendeeService;
     }
 
     [Authorize(Roles = "Admin")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Ticket>>> GetAllTickets()
     {
-        var tickets = await _service.GetAllTicketsAsync();
+        var tickets = await _ticketService.GetAllTicketsAsync();
         return Ok(tickets);
     }
 
@@ -38,7 +41,7 @@ public class TicketController : ControllerBase
             throw new InvalidIDException("Attendee id must be greater than zero.");
         }
         
-        var tickets = await _service.GetAllTicketsByAttendeeId(id);
+        var tickets = await _ticketService.GetAllTicketsByAttendeeId(id);
 
         if (!tickets.Any()) Console.WriteLine("No tickets found for that attendee");
         return Ok(tickets);
@@ -53,7 +56,7 @@ public class TicketController : ControllerBase
             throw new InvalidIDException("Ticket id must be greater than zero.");
         }
         
-        var ticket = await _service.GetTicketByIdAsync(id);
+        var ticket = await _ticketService.GetTicketByIdAsync(id);
 
         if (ticket == null) return NotFound();
 
@@ -74,7 +77,7 @@ public class TicketController : ControllerBase
             throw new InvalidIDException("Event Id must be greater than zero.");
         }
         
-        var createdTicket = await _service.CreateTicketAsync(ticketDto);
+        var createdTicket = await _ticketService.CreateTicketAsync(ticketDto);
 
         return CreatedAtAction(
             nameof(GetTicketById),
@@ -93,8 +96,15 @@ public class TicketController : ControllerBase
         }
 
         var authenticatedUsername = User.FindFirst(ClaimTypes.Name)?.Value;
+        var ticket = await _ticketService.GetTicketByIdAsync(id);
+        var attendee = await _attendeeService.GetAttendeeByUsername(authenticatedUsername);
 
-        var result = await _service.DeleteTicketAsync(id, authenticatedUsername);
+        if (ticket.AttendeeId != attendee.Id)
+        {
+            throw new UnauthorizedAccessException("You are unauthorized to delete this ticket");
+        }
+
+        var result = await _ticketService.DeleteTicketAsync(id);
         
         if (!result) return NotFound();
         

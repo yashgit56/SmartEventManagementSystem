@@ -4,13 +4,14 @@ using MailKit.Net.Smtp;
 using MassTransit;
 using MessageContracts;
 using MimeKit;
+using Serilog;
 using SmartEventManagementSystem_EmailService.Models;
 
 namespace SmartEventManagementSystem_EmailService;
 public class AttendeeEncodedConsumer : IConsumer<AttendeeEmailMessage>
 {
     private readonly IConfiguration _configuration;
-    
+
     public AttendeeEncodedConsumer(IConfiguration configuration)
     {
         _configuration = configuration;
@@ -25,21 +26,21 @@ public class AttendeeEncodedConsumer : IConsumer<AttendeeEmailMessage>
 
             if (attendee == null || string.IsNullOrEmpty(attendee.Email))
             {
-                Console.WriteLine("Invalid attendee data. Ignoring message.");
+                Log.Warning("Invalid attendee data. Ignoring message.");
                 return;
             }
             
             await SendWelcomeEmailAsync(attendee);
-            Console.WriteLine($"Message acknowledged: {attendee.Email}");
+            Log.Information($"Message acknowledged: {attendee.Email}");
 
         }
         catch (JsonException ex)
         {
-            Console.WriteLine($"Error deserializing message: {ex.Message}");
+            Log.Error($"Error deserializing message: {ex.Message}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error processing message: {ex.Message}");
+            Log.Error($"Error processing message: {ex.Message}");
         }
     }
     
@@ -85,11 +86,11 @@ public class AttendeeEncodedConsumer : IConsumer<AttendeeEmailMessage>
             await smtpClient.SendAsync(email);
             await smtpClient.DisconnectAsync(true);
 
-            Console.WriteLine($"Email sent successfully to {attendee.Email}");
+            Log.Information($"Email sent successfully to {attendee.Email}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error sending email to {attendee.Email}: {ex.Message}");
+            Log.Error($"Error sending email to {attendee.Email}: {ex.Message}");
             throw; 
         }
     }

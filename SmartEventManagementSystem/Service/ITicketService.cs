@@ -13,7 +13,7 @@ public interface ITicketService
 
     Task<Ticket> CreateTicketAsync(TicketDto ticketDto);
 
-    Task<bool> DeleteTicketAsync(int id, string username);
+    Task<bool> DeleteTicketAsync(int id);
 
     Task<List<TicketSalesDto>> GetTicketSalesForEventAsync(int eventId);
 }

@@ -82,6 +82,8 @@ public class EventRepository : IEventRepository
     {
         return await _context.Events
             .Where(e => e.Date >= DateTime.UtcNow)
+            .Include(e => e.Tickets)
+            .ThenInclude(t => t.Attendee)
             .Select(e => new EventDetailsDto
             {
                 EventName = e.Name,
@@ -96,7 +98,8 @@ public class EventRepository : IEventRepository
                 Attendees = e.Tickets.Select(t => new AttendeeDetailsDto
                 {
                     Username = t.Attendee!.Username,
-                    Email = t.Attendee!.Email
+                    Email = t.Attendee!.Email,
+                    PhoneNumber = t.Attendee.PhoneNumber
                 }).ToList()
             })
             .ToListAsync();

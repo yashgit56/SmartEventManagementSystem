@@ -6,5 +6,4 @@ public interface IAdminRepository
 {
     Admin? GetAdminByUsernameAndPassword(string username, string password);
     
-    Admin? CreateAdmin(Admin admin);
 }

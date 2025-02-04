@@ -22,24 +22,27 @@ public class TicketService : ITicketService
     {
         var tickets = await _ticketRepository.GetAllTicketsAsync();
 
-        if (tickets == null || !tickets.Any())
+        var allTicketsAsync = tickets.ToList();
+        
+        if (tickets == null || allTicketsAsync.Count == 0)
         {
             throw new NoTicketFoundException("No Tickets found");
         }
 
-        return tickets;
+        return allTicketsAsync;
     }
 
     public async Task<IEnumerable<Ticket>> GetAllTicketsByAttendeeId(int id)
     {
         var tickets = await _ticketRepository.GetAllTicketsByAttendeeId(id);
-        
-        if (tickets == null || !tickets.Any())
+
+        var allTicketsByAttendeeId = tickets.ToList();
+        if (tickets == null || !allTicketsByAttendeeId.Any())
         {
             throw new NoTicketFoundException("No Tickets found for that attendee");
         }
 
-        return tickets;
+        return allTicketsByAttendeeId;
     }
 
     public async Task<Ticket> GetTicketByIdAsync(int id)
@@ -59,16 +62,8 @@ public class TicketService : ITicketService
         return await _ticketRepository.CreateTicketAsync(ticketDto);
     }
 
-    public async Task<bool> DeleteTicketAsync(int id, string username)
+    public async Task<bool> DeleteTicketAsync(int id)
     {
-        var ticket = await GetTicketByIdAsync(id);
-        var user = await _attendeeService.GetAttendeeByUsername(username);
-
-        if (ticket.AttendeeId != user.Id)
-        {
-            throw new UnauthorizedAccessException("You are not autorized to delete this ticket");
-        }
-        
         return await _ticketRepository.DeleteTicketAsync(id);
     }
 

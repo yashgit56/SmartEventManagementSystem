@@ -30,68 +30,68 @@ public class GlobalExceptionHandlerMiddleware
 
     private async Task HandleExceptionAsync(HttpContext context, Exception ex)
     {
-        var message = "An unexpected error occurred.";
+        var errorMessage = "An unexpected error occurred.";
         var statusCode = (int)HttpStatusCode.InternalServerError;
                 
         switch (ex)
         {
             case UnauthorizedAccessException uae:
-                message = uae.Message;
+                errorMessage = uae.Message;
                 statusCode = (int)HttpStatusCode.Unauthorized;
                 break;
             
             case ArgumentNullException argNullEx:
-                message = argNullEx.Message;
+                errorMessage = argNullEx.Message;
                 statusCode = (int)HttpStatusCode.BadRequest;
                 break;
             
             case ArgumentException ae:
-                message = ae.Message ;
+                errorMessage = ae.Message ;
                 statusCode = (int)HttpStatusCode.BadRequest ;
                 break;
             
             case NotFoundException notFoundEx:
-                message = notFoundEx.Message;
+                errorMessage = notFoundEx.Message;
                 statusCode = (int)HttpStatusCode.NotFound;
                 break;
 
             case InvalidIDException invalidIDEx:
-                message = invalidIDEx.Message;
+                errorMessage = invalidIDEx.Message;
                 statusCode = (int)HttpStatusCode.BadRequest;
                 break;
 
             case UserAlreadyExistException userExistEx:
-                message = userExistEx.Message;
+                errorMessage = userExistEx.Message;
                 statusCode = (int)HttpStatusCode.Conflict;
                 break;
 
             case DataNotValidException dataNotValidEx:
-                message = dataNotValidEx.Message;
+                errorMessage = dataNotValidEx.Message;
                 statusCode = (int)HttpStatusCode.BadRequest;
                 break;
 
             case EventCompleteException eventCompleteEx:
-                message = eventCompleteEx.Message;
+                errorMessage = eventCompleteEx.Message;
                 statusCode = (int)HttpStatusCode.BadRequest;
                 break;
 
             case NoEventFoundException noEventFoundEx:
-                message = noEventFoundEx.Message;
+                errorMessage = noEventFoundEx.Message;
                 statusCode = (int)HttpStatusCode.NotFound;
                 break;
 
             case NoTicketFoundException noTicketFoundEx:
-                message = noTicketFoundEx.Message;
+                errorMessage = noTicketFoundEx.Message;
                 statusCode = (int)HttpStatusCode.NotFound;
                 break;
 
             case InvalidOperationException invalidOpEx:
-                message = invalidOpEx.Message;
+                errorMessage = invalidOpEx.Message;
                 statusCode = (int)HttpStatusCode.BadRequest;
                 break;
 
             case ValidationException validationEx:
-                message = validationEx.Message;
+                errorMessage = validationEx.Message;
                 statusCode = (int)HttpStatusCode.BadRequest;
                 break;
             
@@ -105,7 +105,7 @@ public class GlobalExceptionHandlerMiddleware
 
         var errorResponse = new ErrorResponse
         {
-            Message = message
+            ErrorMessage = errorMessage
         };
         
         await context.Response.WriteAsJsonAsync(errorResponse);

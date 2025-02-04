@@ -84,7 +84,7 @@ public class AttendeeRepository : IAttendeeRepository
     public Attendee? GetAttendeeByUsernameAndPassword(string username, string password)
     {
         return _context.Attendees.FirstOrDefault(attendee =>
-            attendee!.Username == username && attendee.HashPassword == password);
+            attendee!.Username == username && attendee.Password == password);
     }
 
     public async Task<List<AttendeeWithTicketsDto>> GetAttendeesWithTicketPurchaseHistory()

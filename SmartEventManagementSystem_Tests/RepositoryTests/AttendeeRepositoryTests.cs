@@ -138,7 +138,7 @@ public class AttendeeRepositoryTests
         
         Assert.NotNull(user);
         Assert.Equal(username, user.Username);
-        Assert.Equal(password, user.HashPassword);
+        Assert.Equal(password, user.Password);
     }
     
     [Fact]

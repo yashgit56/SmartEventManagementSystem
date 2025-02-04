@@ -19,12 +19,12 @@ public class Ticket
     public int EventId { get; set; }
 
     [JsonIgnore]
-    [ForeignKey(nameof(EventId))] public Event? Event { get; }
+    [ForeignKey(nameof(EventId))] public Event? Event { get; set; }
 
     public int? AttendeeId { get; set; }
 
     [JsonIgnore]
-    [ForeignKey(nameof(AttendeeId))] public Attendee? Attendee { get; }
+    [ForeignKey(nameof(AttendeeId))] public Attendee? Attendee { get; set; }
 
     public decimal Price { get; set; }
 
